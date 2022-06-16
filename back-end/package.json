@@ -4,7 +4,7 @@
   "description": "I don't have an accessible way to find & track foreign equipment information in order to develop courses of action & wargame military operations.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "start": "nodemon index.js"
   },
   "keywords": [
@@ -17,5 +17,9 @@
     "knex": "^2.1.0",
     "nodemon": "^2.0.16",
     "pg": "^8.7.3"
+  },
+  "devDependencies": {
+    "jest": "^28.1.1",
+    "supertest": "^6.2.3"
   }
 }

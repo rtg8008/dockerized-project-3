@@ -15,6 +15,16 @@ module.exports = {
       database: 'weg_database' // expected database name to be created
     }
   },
+  test: {
+    client: 'postgresql',
+    connection: {
+      host: '127.0.0.1',
+      password: 'docker',
+      user: 'postgres', //default postgres user
+      port: 5432,
+      database: 'weg_database' // expected database name to be created
+    }
+  },
 
   staging: {
     client: 'postgresql',

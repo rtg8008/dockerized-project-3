@@ -4,6 +4,7 @@
  */
 exports.seed = async function(knex) {
   // Deletes ALL existing entries
+  // await knex.schema.raw('TRUNCATE subcategory CASCADE')
   await knex('subcategory').del()
   await knex('subcategory').insert([
     {name: 'Reconnaissance Vehicles', category_id: 1},
@@ -34,5 +35,13 @@ exports.seed = async function(knex) {
     {name: 'Transportation', category_id: 8},
     {name: 'Maintenance', category_id: 8},
     {name: 'General Utility', category_id: 8},
+    {name: 'C2 and Information Warfare', category_id: 9},
+    {name: 'Countermeasures', category_id: 10},
+    {name: 'Insurgent and Gurilla Forces', category_id: 11},
+    {name: 'Chemical Systems', category_id: 12},
+    {name: 'Tanks', category_id: 4},
+
+    
+
   ]);
 };
