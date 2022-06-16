@@ -6,8 +6,8 @@ exports.up = function(knex) {
   return knex.schema.createTable('mission', table => {
     table.increments();
     table.string('statement', 500);
-    table.float('location_long');
     table.float('location_lat');
+    table.float('location_long');
   })
 };
 
