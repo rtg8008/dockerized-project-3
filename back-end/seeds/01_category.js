@@ -4,7 +4,7 @@
  */
 exports.seed = async function(knex) {
   // Deletes ALL existing entries
-  // await knex.schema.raw('TRUNCATE category CASCADE') // ?
+  // await knex.schema.raw('TRUNCATE category CASCADE') //
   await knex('category').del()
   await knex('category').insert([
     {name: 'Reconnaissance'},

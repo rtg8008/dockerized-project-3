@@ -90,9 +90,46 @@ app.get('/mission', (req, res) => {
   .then(data => {res.status(200).json(data)})
   .catch(() => res.status(404).send('Could not retrieve data'))
 })
-app.get('/mission/:id', (req, res) => {
+
+app.get('/mission/:id', async (req, res) => {
   console.log('getting mission id');
-  knex
+  
+  // TEST NESTED JOIN
+  // let temp = await knex.select('*').from('mission_equipment').join('accounts', function() {
+  //   this.on(function() {
+  //     this.on('accounts.id', '=', 'users.account_id')
+  //     this.orOn('accounts.owner_id', '=', 'users.id')
+  //   })
+  // })
+  
+  // console.log('what our test returned: ', temp);
+  // TEST NESTED JOIN
+
+  let missionEquipment = await knex('mission_equipment')
+  .join('equipment', 'equipment.id', '=', 'mission_equipment.equipment_id')
+  .join('meta', 'meta.id', '=', 'mission_equipment.meta_id')
+  .join('subcategory', 'subcategory.id', '=', 'equipment.subcategory_id')
+  .join('category', 'category.id', '=', 'subcategory.category_id')
+  .where('mission_equipment.mission_id', req.params.id)
+  .select('equipment.id as equipment_id',
+        'equipment.name as equipment_name',
+        'category.name as category',
+        // 'equipment.subcategory_id as subcategory_id',
+        'subcategory.name as subcategory',
+        'equipment.caliber as caliber',
+        'equipment.max_range_meters as maxrangemeters',
+        'equipment.armored as armored',
+        'equipment.country as country',
+        'equipment.image as image',
+        'meta.quantity as quantity',
+        'meta.location_lat as lat',
+        'meta.location_long as lon',
+        'meta.phase as phase'
+        )
+  
+  console.log('temp Var: ', missionEquipment)
+  
+  await knex
   .select('*')
   .from('mission')
   .where({id: req.params.id})
@@ -100,10 +137,15 @@ app.get('/mission/:id', (req, res) => {
     if (data.length === 0)
       res.status(404).send('Could not retrieve mission data');
     else
-      res.status(200).json(data);
+    {
+      data[0].equipment = missionEquipment;
+      res.status(200).json(data[0]);
+
+    }
   })
   .catch(() => res.status(404).send('Could not retrieve mission data'))
 })
+
 app.get('/category', (req, res) => {
   console.log('getting category data');
   knex
@@ -112,6 +154,8 @@ app.get('/category', (req, res) => {
   .then(data => {res.status(200).json(data)})
   .catch(() => res.status(404).send('Could not category data'))
 })
+
+
 app.get('/subcategory', (req, res) => {
   console.log('getting subcategory data');
   knex
