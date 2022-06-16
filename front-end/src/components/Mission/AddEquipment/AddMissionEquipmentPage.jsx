@@ -6,7 +6,7 @@ import thing from ""
 
 
 
-function HomePage() {//app below
+function AddMissionEquipmentPage() {//app below
 
 
 

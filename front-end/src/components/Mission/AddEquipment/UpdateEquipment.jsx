@@ -6,8 +6,8 @@ import thing from ""
 
 
 
-function HomePage() {//app below
-
+function UpdateEquipment() {//app below
+//this will need to look at every value inside of 
 
 
 
@@ -27,4 +27,4 @@ function HomePage() {//app below
 
 
 
-export default App;
+export default App;f
