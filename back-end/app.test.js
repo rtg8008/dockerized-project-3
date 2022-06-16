@@ -1,4 +1,5 @@
-// const knex = require('knex')(require('./knexfile.js')[process.env.NODE_ENV||'development']);
+console.log(process.env.NODE_ENV);
+
 const app = require('./app');
 const request = require('supertest');
 
@@ -12,7 +13,6 @@ describe('unit tests for express application', ()=>{
         done();
       })
   })
-
   it('should get equipment information', (done) => {
     request(app)
       .get('/equipment')
@@ -26,6 +26,4 @@ describe('unit tests for express application', ()=>{
         done();
       })
   })
-  
-
 })
