@@ -22,12 +22,12 @@ const HomePage = () => {
   },[])
   
   function createMission(statement, lat, lon){
-
-    if (typeof statement !== 'string' || typeof parseFloat(lat) !== 'number' || typeof parseFloat(lon) !== 'number')
-    {
-      alert('Please enter the correct parameters');
-      return;
-    }
+    
+    // if (typeof statement !== 'string' || parseFloat(lat) === NaN || parseFloat(lon) === NaN)
+    // {
+    //   alert('Please enter the correct parameters');
+    //   return;
+    // }
     const init = {
       method: 'POST',
       headers: {
@@ -41,7 +41,7 @@ const HomePage = () => {
     .then(res => res.json())
     .then(data => {
       console.log(data);
-      nav(`/mission/${data[data.length-1].id}`)
+      nav(`/add-weapons/${data[data.length-1].id}`)
     })
     //nav('/mission/'+input)
     //we will need to send a post request to create a new empty mission

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Delete } from '../HomePage/StyledHomePage.js';
-import { Details } from './StyleMissionOverview.js'
+import { Details, AddEquipment } from './StyleMissionOverview.js'
 
 function MissionOverView() {//app below
   const letParams = useParams();
@@ -51,7 +51,8 @@ function MissionOverView() {//app below
         ></img>
       </div>
     ))}
-    <div><Delete src='/logo512.png' alt='PintokartLogo' data-testid='nav-to-home-page' onClick={() => deleteSelf()}/></div> 
+    <div><Delete src='/logo512.png' alt='HomeLogo' data-testid='nav-to-home-page' onClick={() => deleteSelf()}/></div> 
+    <div><AddEquipment src='/logo512.png' alt='AddEquipLogo' data-testid='nav-to-add-equipment-page' onClick={() => nav(`/add-weapons/${letParams.missionId}`)}></AddEquipment></div>
     </>
   )
 

@@ -6,6 +6,7 @@ import React,{ useEffect, useState } from 'react';
 import NavHome from './components/ReusableComponents/NavHome';
 import HomePage from './components/HomePage/HomePage'
 import MissionOverView from './components/Mission/MissionOverView';
+import AddMissionEquipmentPage from './components/Mission/AddEquipment/AddMissionEquipmentPage';
 
 function App() {
 
@@ -18,7 +19,7 @@ function App() {
             {/* allows you to navigate to or create missions */}
             <Route path="/mission/:missionId" element={<MissionOverView/>}/>
             {/*  */}
-            <Route path="/add-weapons/" element={<div>add-equipment</div>}/>
+            <Route path="/add-weapons/:missionId" element={<AddMissionEquipmentPage/>}/>
             {/*  */}
             <Route path="/equipment/:id" element={<DetailPage/>}/>
             {/*  */}
