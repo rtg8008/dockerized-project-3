@@ -1,14 +1,8 @@
-//imports begin
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Delete } from '../HomePage/StyledHomePage.js';
 import { Details } from './StyleMissionOverview.js'
-// import thing from ""
-//imports end
-
-
-
 
 function MissionOverView() {//app below
   const letParams = useParams();
@@ -37,7 +31,6 @@ function MissionOverView() {//app below
       console.log(data)
       setResults(data)})
   },[missionURL])
-
   return (
     <>
     <h1>{results.statement}</h1>
@@ -54,7 +47,8 @@ function MissionOverView() {//app below
         <Details>{element.lon}</Details>
         <Details>Quantity in Mission: {element.quantity}</Details>
         <Details>{element.caliber}</Details>
-        <img style={{height: '100px'}} src = {element.image} alt = {element.name}></img>
+        <img style={{height: '100px'}} src = {element.image} alt = {element.name} onClick={() => nav(`/equipment/${element.equipment_id}`)}
+        ></img>
       </div>
     ))}
     <div><Delete src='/logo512.png' alt='PintokartLogo' data-testid='nav-to-home-page' onClick={() => deleteSelf()}/></div> 
@@ -75,7 +69,5 @@ function MissionOverView() {//app below
   //   }
   // }
 }
-
-
 
 export default MissionOverView;
