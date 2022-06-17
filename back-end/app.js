@@ -10,7 +10,7 @@ app.get('/', (req, res) => res.status(200).send('Hello World!'))
 // CREATE --------------------------------------------------------------------------
 
 
-/*
+/* add an equipment to the database
   REQUEST BODY
       {
         "name": "string",
@@ -31,7 +31,8 @@ app.post('/equipment', async (req, res) => {
   
   res.status(201).send(result);
 })
-/*
+
+/* adds a mission to the database 
   REQUEST BODY
       {
         "statement": "string",
@@ -50,6 +51,7 @@ app.post('/mission', async (req, res) => {
 })
 
 // READ FUNCTIONS ---------------------------------------------------------//
+// gets all equipment (excluding the category of the equipment (but including the subcat))
 app.get('/equipment', (req, res) => {
   console.log('getting equipment data');
   knex
@@ -58,8 +60,36 @@ app.get('/equipment', (req, res) => {
   .then(data => {res.status(200).json(data)})
   .catch(() => res.status(404).send('Could not retrieve data'))
 })
+
+// gets info on equipment with specified id
 app.get('/equipment/:id', (req, res) => {
   console.log('getting equipment id');
+  // join test
+  /*
+  let missionEquipment = await knex('mission_equipment')
+  .join('equipment', 'equipment.id', '=', 'mission_equipment.equipment_id')
+  .join('meta', 'meta.id', '=', 'mission_equipment.meta_id')
+  .join('subcategory', 'subcategory.id', '=', 'equipment.subcategory_id')
+  .join('category', 'category.id', '=', 'subcategory.category_id')
+  .where('mission_equipment.mission_id', req.params.id)
+  .select('equipment.id as equipment_id',
+        'equipment.name as equipment_name',
+        'category.name as category',
+        // 'equipment.subcategory_id as subcategory_id',
+        'subcategory.name as subcategory',
+        'equipment.caliber as caliber',
+        'equipment.max_range_meters as maxrangemeters',
+        'equipment.armored as armored',
+        'equipment.country as country',
+        'equipment.image as image',
+        'meta.quantity as quantity',
+        'meta.location_lat as lat',
+        'meta.location_long as lon',
+        'meta.phase as phase'
+        )
+  */
+  
+// join test
   knex
   .select('*')
   .from('equipment')
@@ -75,6 +105,8 @@ app.get('/equipment/:id', (req, res) => {
 
 // --------------BREAK-----------------//
 
+
+// gets equipment with a specified category id
 app.get('/equipment/category/:category', async (req, res) => {
   let result = []
   console.log('getting category data');
@@ -100,17 +132,12 @@ app.get('/equipment/category/:category', async (req, res) => {
   
   res.status(200).json(result);
   
-  // knex
-  // .select('*')
-  // .from('category')
-  // .then(data => {res.status(200).json(data)})
-  // .catch(() => res.status(404).send('Could not category data'))
+
 })
+
+// gets equipment that have this related subcategory_id
 app.get('/equipment/subcategory/:subcategory_id', async (req, res) => {
   console.log('getting equipment data in this subcategory');
-  // let temp = await knex('category').where({name: req.params.subcategory_id})
-  // console.log(req.params.subcategory_id);
-  // console.log(temp);
   knex('equipment')
   .where({subcategory_id: req.params.subcategory_id})
   .then(data => {
@@ -120,7 +147,10 @@ app.get('/equipment/subcategory/:subcategory_id', async (req, res) => {
       res.status(200).json(data);
   })
   .catch(() => res.status(404).send('Could not retrieve data'))
-})  
+})
+
+
+// gets an abreviated list of missions, excluding information of what equipment each mission has  
 app.get('/mission', (req, res) => {
   console.log('getting mission data');
   knex
@@ -129,7 +159,7 @@ app.get('/mission', (req, res) => {
   .then(data => {res.status(200).json(data)})
   .catch(() => res.status(404).send('Could not retrieve data'))
 })
-
+// gets all the information about a specific mission, including any equipment (and relevent information about that equipment) from the database
 app.get('/mission/:id', async (req, res) => {
   console.log('getting mission id');
   let missionEquipment = await knex('mission_equipment')
@@ -154,8 +184,6 @@ app.get('/mission/:id', async (req, res) => {
         'meta.phase as phase'
         )
   
-  // console.log('temp Var: ', missionEquipment)
-  
   await knex
   .select('*')
   .from('mission')
@@ -172,7 +200,7 @@ app.get('/mission/:id', async (req, res) => {
   })
   .catch(() => res.status(404).send('Could not retrieve mission data'))
 })
-
+// gets a list of the categories from the category table
 app.get('/category', (req, res) => {
   console.log('getting category data');
   knex
@@ -182,7 +210,7 @@ app.get('/category', (req, res) => {
   .catch(() => res.status(404).send('Could not category data'))
 })
 
-
+// Gets a list of the subcategorys from the subcategory table
 app.get('/subcategory', (req, res) => {
   console.log('getting subcategory data');
   knex
@@ -194,20 +222,38 @@ app.get('/subcategory', (req, res) => {
 // UPDATE FUNCTIONS ------------------------------------------------------------------------------------------------------------//
 /*
   QUERY PARAMS
+    example http request: http://localhost:8080/mission/1?equipment_id=1&operation=add
     equipment_id (number): equipment id to add or remove from mission id
-    remove (string): if 'remove', remove equipment id @ mission id, if 'add', add equipment id; if 'update', update metadate at mission: equipment id
-  REQUEST BODY: needed if adding
+    operation (string): if 'remove', remove equipment id @ mission id, if 'add', add equipment id; if 'update', update metadate at mission: equipment id
+  REQUEST BODY: needed if adding or updating. if updating, only include key/value pairs you want to update
     {
-      phase: number,
-      quantity: number,
-      location_lat,
-      location_long
+      "phase": 1,
+      "quantity": 1,
+      "location_lat" : 123,
+      "location_long": 123
     }
 */
 app.patch('/mission/:id', async (req, res) => {
   console.log(`${req.query.operation} mission at id: `, req.params.id);
   console.log('request body: ', req.body);
-  console.log(req.query)
+  console.log(`recieved query params `,req.query)
+  // error checking
+  if (req.query.operation === undefined || req.query.equipment_id === undefined){
+    res.status(400).send({message: 'incorrect query params'})
+    return;
+  }
+  const expectedKeys = [ 'quantity', 'phase', 'location_lat', 'location_long' ];
+  let keys = Object.keys(req.body)
+  console.log('recieved keys in body: ',keys)
+  for (let i = 0; i < keys.length; i++)
+  {
+    if (!expectedKeys.includes(keys[i]))
+    {
+      res.status(400).send({message: 'incorrect body'})
+      return;
+    }
+  }
+  // end error checking
   if (req.query.operation === 'remove')
   {
     let result = await knex('mission_equipment')
@@ -246,7 +292,7 @@ app.patch('/mission/:id', async (req, res) => {
     res.status(200).send({mission_id: req.params.id, equipment_id: req.query.equipment_id});
   }
   else{
-    res.status(404).end('this did not work')
+    res.status(404).end({message: 'not valid operation' })
   }
 
 })
@@ -256,10 +302,24 @@ app.delete('/mission/:id', async (req, res) => {
   
   let result = await knex('mission')
   .where({id: req.params.id})
+  let temp = await knex('mission_equipment')
+  .select('*')
+  .where({mission_id: req.params.id})
+  console.log(temp);
+
   
+
   await knex('mission_equipment')
   .del()
   .where({mission_id: req.params.id})
+  
+  for (let i = 0; i < temp.length; i++)
+  {
+    await knex('meta')
+    .del()
+    .where({id: temp[i].meta_id})
+  }
+  
   await knex('mission')
   .del()
   .where({id: req.params.id})
