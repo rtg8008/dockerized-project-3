@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Delete } from '../HomePage/StyledHomePage.js';
+import { Details } from './StyleMissionOverview.js'
 // import thing from ""
 //imports end
 
@@ -40,19 +41,19 @@ function MissionOverView() {//app below
   return (
     <>
     <h1>{results.statement}</h1>
-    <div>{results.location_long}</div>
-    <div>{results.location_lat}</div>
+    <Details>{results.location_long}</Details>
+    <Details>{results.location_lat}</Details>
     {results.equipment.map(element => (
       <div key={element.equipment_id}>
-        <div>{element.equipment_name}</div>
-        <div>{element.category}</div>
-        <div>{element.subcategory}</div>
-        <div>{element.country}</div>
-        <div>Armored: {element.armored}</div>
-        <div>{element.lat}</div>
-        <div>{element.lon}</div>
-        <div>Quantity in Mission: {element.quantity}</div>
-        <div>{element.caliber}</div>
+        <Details>{element.equipment_name}</Details>
+        <Details>{element.category}</Details>
+        <Details>{element.subcategory}</Details>
+        <Details>{element.country}</Details>
+        <Details>Armored: {element.armored}</Details>
+        <Details>{element.lat}</Details>
+        <Details>{element.lon}</Details>
+        <Details>Quantity in Mission: {element.quantity}</Details>
+        <Details>{element.caliber}</Details>
         <img style={{height: '100px'}} src = {element.image} alt = {element.name}></img>
       </div>
     ))}

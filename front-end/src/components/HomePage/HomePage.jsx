@@ -23,7 +23,7 @@ const HomePage = () => {
   
   function createMission(statement, lat, lon){
 
-    if (typeof statement !== 'string' || typeof lat !== 'number' || typeof lon !== 'number')
+    if (typeof statement !== 'string' || typeof parseFloat(lat) !== 'number' || typeof parseFloat(lon) !== 'number')
     {
       alert('Please enter the correct parameters');
       return;
