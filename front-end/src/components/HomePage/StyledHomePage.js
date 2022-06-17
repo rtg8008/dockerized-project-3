@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 export const Logo = styled.img`
   position: fixed;
-  top: 32px;
-  right: 32px;
+  top: 16px;
+  right: 16px;
   width: 50px;
   height: auto;
   border-radius: 20px;
@@ -11,58 +11,79 @@ export const Logo = styled.img`
   padding: 8px 16px;
   z-index: 3000;
   cursor: pointer;
-  background-color: #ffffff;
+  // background-color: rose;
   transition: all 0.4s;
 
   &:hover {
     box-shadow: 0 0 28px 0 #889baf;
+    background-color: Cornsilk;
     transform: scale(1.1);
   }
 `
 
 
 export const Mission = styled.div`
-  position: fixed;
-  bottom: 32px;
-  right: 32px;
-  width: 60px;
-  height: auto;
   border-radius: 20px;
   box-shadow: 0 0 8px 0 #889baf;
   padding: 16px;
+  margin: 10px;
   z-index: 3000;
   cursor: pointer;
-  background-color: #ffffff;
+  background-color: CadetBlue;
+  color: Cornsilk;
   transition: all 0.4s;
   
   &:hover {
     box-shadow: 0 0 28px 0 #889baf;
+    color: CadetBlue;
+    background-color: Cornsilk;
     transform: scale(1.1);
   }
 `
 
-export const ModeLogo = styled.button`
-  position: fixed;
-  top: 32px;
-  right: 16px;
-  width: 150px;
-  height: auto;
+export const Input = styled.input`
+  text-align: center;
+  margin-left: 17em;
+  width: 25em;
   border-radius: 20px;
   border: 0px;
   box-shadow: 0 0 8px 0 #889baf;
   padding: 16px;
   z-index: 3000;
   cursor: pointer;
-  background-color: #ffffff;
+  background-color: Cornsilk;
   transition: all 0.4s;
-  
+`
+
+export const Background = styled.div`
+  border-radius: 20px;
+  box-shadow: 0 0 8px 0 #889baf;
+  padding: 16px;
+  margin: 10px;
+  z-index: 3000;
+  cursor: pointer;
+  background-color: AliceBlue;
+  color: salmon;
+  transition: all 0.4s;
+`
+export const Delete = styled.img`
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  width: 50px;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0 0 8px 0 #889baf;
+  padding: 8px 16px;
+  z-index: 3000;
+  cursor: pointer;
+  // background-color: rose;
+  transition: all 0.4s;
+
   &:hover {
     box-shadow: 0 0 28px 0 #889baf;
+    background-color: Crimson;
     transform: scale(1.1);
   }
 `
-
-;
-
-
 
