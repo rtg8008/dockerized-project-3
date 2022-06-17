@@ -1,17 +1,30 @@
-import inputSubmit from "./inputSubmit/inputSubmit.jsx"
+import {useNavigate} from 'react-router-dom';
+import InputSubmit from "./inputSubmit/inputSubmit"
+//imports end
 
-import { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+const HomePage = () => {
+  const nav = useNavigate();
+  // let func = props.func
+  // let buttonName = props.buttonName
+  // let placeHolderText = props.placeHolderText
 
-
-function HomePage() {
-
-    return (
-        <>
-      <inputSubmit name="search for mission" action="submit"/>
-      <inputSubmit name="create new mission" action="create"/>
-        </>
-    );
+  function navToMission(input) {
+    nav('/mission/'+input)
+    console.log(input)
   }
   
-  export default HomePage;
+  function createMission(input){
+    //we will need to send a post request to create a new empty mission
+    nav('/mission'+input)
+    console.log(input)
+  }
+  
+      return (
+      <>
+        <InputSubmit func ={(inputValue)=>navToMission(inputValue)} buttonName = "submit" placeHolderText = "Enter to Navigate to"/>
+        <InputSubmit func ={(inputValue)=>createMission(inputValue)} buttonName = "create" placeHolderText = "Enter to Create"/>
+      </>
+    );
+}
+
+export default HomePage;
