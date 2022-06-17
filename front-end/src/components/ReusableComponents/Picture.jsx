@@ -6,16 +6,17 @@ import thing from ""
 
 
 
-function App() {//app below
+function Picture(props) {//app below
+  let imageURL = props.url
 //We will need to fetch the picture form the backend
   //this picture will not need to change
-
+console.log(imageURL)
 
 
   {//return below
     return (
       <div class ="equipment-image" >
-        <img/>
+       tested
         {/* 
           the component requesting the image will choose the styling
         */}
@@ -32,4 +33,4 @@ function App() {//app below
 
 
 
-export default App;
+export default Picture;

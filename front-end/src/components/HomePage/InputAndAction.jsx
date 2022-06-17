@@ -27,4 +27,4 @@ function InputAndAction() {//app below
 
 
 
-export default App;
+export default InputAndAction;

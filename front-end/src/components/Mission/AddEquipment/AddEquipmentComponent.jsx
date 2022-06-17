@@ -6,7 +6,7 @@ import thing from ""
 
 
 
-function AppAddEquipmentComponent() {//app below
+function AddEquipmentComponent() {//app below
 //this component will need to keep track of a number and update that number with use state
 //this number will need to be accessible to the modify equipment component 
   //this number will be used to modify the database
@@ -44,4 +44,4 @@ function AppAddEquipmentComponent() {//app below
 
 
 
-export default App;
+export default AddEquipmentComponent;

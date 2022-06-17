@@ -6,7 +6,7 @@ import thing from ""
 
 
 
-function EqupmentInformaiton(...params) {//app below
+function EquipmentInformation(...params) {//app below
    let RequestedInformation = {
     Caliber       :false,
     MaxRange      :false,
@@ -45,4 +45,4 @@ function EqupmentInformaiton(...params) {//app below
 
 
 
-export default App;
+export default EquipmentInformation;

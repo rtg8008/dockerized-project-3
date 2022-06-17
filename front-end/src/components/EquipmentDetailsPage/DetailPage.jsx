@@ -36,4 +36,4 @@ function DetailPage() {//app below
 
 
 
-export default App;
+export default DetailPage;

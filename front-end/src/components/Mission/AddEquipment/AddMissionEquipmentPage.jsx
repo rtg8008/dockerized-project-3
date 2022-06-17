@@ -27,4 +27,4 @@ function AddMissionEquipmentPage() {//app below
 
 
 
-export default App;
+export default AddMissionEquipmentPage;

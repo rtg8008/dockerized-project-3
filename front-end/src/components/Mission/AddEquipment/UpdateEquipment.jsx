@@ -27,4 +27,4 @@ function UpdateEquipment() {//app below
 
 
 
-export default App;f
+export default UpdateEquipment;
