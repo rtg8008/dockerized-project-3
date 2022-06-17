@@ -7,20 +7,49 @@ app.use(express.json()); // do not forget!!!
 app.get('/', (req, res) => res.status(200).send('Hello World!'))
 // TEST
 
-// CREATE
-app.post('/equipment', (req, res) => {
-  console.log('patching mission at id: ', req.params.id);
-  console.log('request body: ', req.body);
-  res.status(200).send('Hello World!');
+// CREATE --------------------------------------------------------------------------
+
+
+/*
+  REQUEST BODY
+      {
+        "name": "string",
+        "subcategory_id": number,
+        "caliber": "string",
+        "max_range_meters": number,
+        "armored": boolean,
+        "country": "string",
+        "image": "string"  // url
+      }
+*/
+app.post('/equipment', async (req, res) => {
+  console.log('posting new equipment')
+  await knex('equipment')
+  .insert(req.body)
+  let result = await knex('equipment')
+  .select('*')
+  
+  res.status(201).send(result);
+})
+/*
+  REQUEST BODY
+      {
+        "statement": "string",
+        "location_lat": number,
+        "location_long": number
+      }
+*/
+app.post('/mission', async (req, res) => {
+  console.log('posting new mission')
+  await knex('mission')
+  .insert(req.body)
+  let result = await knex('mission')
+  .select('*')
+  
+  res.status(201).send(result);
 })
 
-app.post('/mission', (req, res) => {
-  console.log('patching mission at id: ', req.params.id);
-  console.log('request body: ', req.body);
-  res.status(200).send('Hello World!');
-})
-
-// READ FUNCTIONS
+// READ FUNCTIONS ---------------------------------------------------------//
 app.get('/equipment', (req, res) => {
   console.log('getting equipment data');
   knex
@@ -125,7 +154,7 @@ app.get('/mission/:id', async (req, res) => {
         'meta.phase as phase'
         )
   
-  console.log('temp Var: ', missionEquipment)
+  // console.log('temp Var: ', missionEquipment)
   
   await knex
   .select('*')
@@ -162,16 +191,81 @@ app.get('/subcategory', (req, res) => {
   .then(data => {res.status(200).json(data)})
   .catch(() => res.status(404).send('Could not subcategory data'))
 }) 
-// UPDATE FUNCTIONS
-app.patch('/mission/:id', (req, res) => {
-  console.log('patching mission at id: ', req.params.id);
+// UPDATE FUNCTIONS ------------------------------------------------------------------------------------------------------------//
+/*
+  QUERY PARAMS
+    equipment_id (number): equipment id to add or remove from mission id
+    remove (string): if 'remove', remove equipment id @ mission id, if 'add', add equipment id; if 'update', update metadate at mission: equipment id
+  REQUEST BODY: needed if adding
+    {
+      phase: number,
+      quantity: number,
+      location_lat,
+      location_long
+    }
+*/
+app.patch('/mission/:id', async (req, res) => {
+  console.log(`${req.query.operation} mission at id: `, req.params.id);
   console.log('request body: ', req.body);
-  res.status(200).send('Hello World!');
+  console.log(req.query)
+  if (req.query.operation === 'remove')
+  {
+    let result = await knex('mission_equipment')
+      .select('*')
+      .where({mission_id: req.params.id, equipment_id: req.query.equipment_id})
+    let metaID = result[0].meta_id;
+    await knex('mission_equipment')
+      .del()
+      .where({mission_id: req.params.id, equipment_id: req.query.equipment_id})
+    await knex('meta')
+      .del()
+      .where({id: metaID});
+    res.status(200).send({mission_id: req.params.id, equipment_id: req.query.equipment_id});
+  }
+  else if (req.query.operation === 'add'){
+    await knex('meta')
+    .insert(req.body)
+    let metaData = await knex('meta')
+    .select('*')
+    let metaID = metaData[metaData.length-1].id;
+    let result = await knex('mission_equipment')
+      .insert([{mission_id: req.params.id, equipment_id: req.query.equipment_id, meta_id: metaID}])
+    res.status(200).send({mission_id: req.params.id, equipment_id: req.query.equipment_id})
+    
+  }
+  else if (req.query.operation === 'update'){
+    let result = await knex('mission_equipment')
+      .select('*')
+      .where({mission_id: req.params.id, equipment_id: req.query.equipment_id})
+    console.log(`result`, result)
+    let metaID = result[0].meta_id;
+
+    let temp = await knex('meta')
+    .where({id: metaID})
+    .update(req.body)
+    res.status(200).send({mission_id: req.params.id, equipment_id: req.query.equipment_id});
+  }
+  else{
+    res.status(404).end('this did not work')
+  }
+
 })
-// DELETE FUNCTIONS
-app.delete('/mission/:id', (req, res) => {
+// DELETE FUNCTIONS ------------------------------------------------------------------------------------------------------------------------//
+app.delete('/mission/:id', async (req, res) => {
   console.log('deleting mission at id: ', req.params.id);
-  res.status(200).send('Hello World!');
+  
+  let result = await knex('mission')
+  .where({id: req.params.id})
+  
+  await knex('mission_equipment')
+  .del()
+  .where({mission_id: req.params.id})
+  await knex('mission')
+  .del()
+  .where({id: req.params.id})
+  
+  
+  res.status(200).send(result);
 })
 
 module.exports = app;

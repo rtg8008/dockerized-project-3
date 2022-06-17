@@ -13,8 +13,8 @@ exports.seed = async function(knex) {
 let testing = ()=>{
   let returnArray = []
 
-  for(let i = 0 ; i < 3;i++){
-    returnArray.push({mission_id: 2, meta_id: 2, equipment_id: 2})
+  for(let i = 0 ; i < 15;i++){
+    returnArray.push({mission_id: i%5+1, meta_id: i+1, equipment_id: i%20+1})
   }
   return returnArray
 }
