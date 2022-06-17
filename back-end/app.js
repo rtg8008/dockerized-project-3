@@ -42,6 +42,7 @@ app.post('/equipment', async (req, res) => {
 */
 app.post('/mission', async (req, res) => {
   console.log('posting new mission')
+  console.log(req.body)
   await knex('mission')
   .insert(req.body)
   let result = await knex('mission')
