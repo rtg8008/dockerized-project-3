@@ -21,8 +21,8 @@ const HomePage = () => {
   
       return (
       <>
-        <InputSubmit func ={(inputValue)=>navToMission(inputValue)} buttonName = "submit" placeHolderText = "Enter to Navigate to"/>
-        <InputSubmit func ={(inputValue)=>createMission(inputValue)} buttonName = "create" placeHolderText = "Enter to Create"/>
+        <InputSubmit func ={(inputValue)=>navToMission(inputValue)} buttonName = "submit" placeHolderText = "Search for a Mission"/>
+        <InputSubmit func ={(inputValue)=>createMission(inputValue)} buttonName = "create" placeHolderText = "Create a New Mission"/>
       </>
     );
 }

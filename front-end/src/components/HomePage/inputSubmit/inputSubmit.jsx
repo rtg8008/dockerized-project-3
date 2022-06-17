@@ -10,11 +10,11 @@ const InputSubmit = (props) => {
   // will navigate to a add equipment to mission page and also will need to add the equipment
   // the third will be a search bar on the add equipment page that will use a get request to find
   // the equipment
-  const nav = useNavigate;
+
   //add an onChange handler to allow the input field to work
   return(
     <div>
-       <input id={buttonName}/> 
+       <input id={buttonName} placeholder={placeHolderText}/> 
        {/* The button needs to now pass in the value of the inputs */}
       <button onClick={()=>func(document.getElementById(buttonName).value)}>{buttonName}</button>
         {/* to test this buttons functionality pass in console.log() as the function */}

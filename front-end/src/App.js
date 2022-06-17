@@ -20,7 +20,7 @@ function App() {
       console.log("Here is the data,",data)
       setResults(data)  
     })
-    .catch(err => console.log("This shit didn't work",err)
+    .catch(err => console.log("We are sorry but something has failed\n",err)
     ,[])})
 
 
@@ -29,9 +29,13 @@ function App() {
       <NavHome/>
       <Routes>
           <Route path="/" element={<HomePage/>}/>
+          {/* allows you to navigate to or create missions */}
           <Route path="/mission/:mission" element={<div>mission</div>}/>
-          <Route path="/add-weapon/:weaponID" element={<div>add-equipment</div>}/>
+          {/*  */}
+          <Route path="/add-weapons/" element={<div>add-equipment</div>}/>
+          {/*  */}
           <Route path="/weapon/:weaponID" element={<div>weaponID</div>}/>
+          {/*  */}
       </Routes> 
     </>
     );
