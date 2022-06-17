@@ -1,12 +1,16 @@
 import {useNavigate } from 'react-router-dom';
+import { Logo } from '../HomePage/StyledHomePage.js';
 
 const NavHome = () => {
   const nav = useNavigate();
-  const navigateHome = () => {
-    nav('/')
-  }
+  // const navigateHome = () => {
+  //   nav('/')
+  // }
   return(
-    <button onClick={navigateHome}>Home</button>
+    <>
+     <Logo  src='/logo512.png' alt='PintokartLogo' data-testid='nav-to-home-page' onClick={() => {nav('/')}}/>
+    {/* <button onClick={navigateHome}>Home</button> */}
+    </>
   )
 }
 
