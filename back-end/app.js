@@ -43,44 +43,54 @@ app.get('/equipment/:id', (req, res) => {
   })
   .catch(() => res.status(404).send('Could not retrieve data'))
 })
-app.get('/equipment/:category', (req, res) => {
+
+// --------------BREAK-----------------//
+
+app.get('/equipment/category/:category', async (req, res) => {
+  let result = []
   console.log('getting category data');
-  knex
-  .select('*')
-  .from('equipment')
-  .where({id: req.params.id})
-  .then(data => {
-    if (data.length === 0)
-      res.status(404).send('Could not retrieve data');
-    else
-      res.status(200).json(data);
-  })
-  .catch(() => res.status(404).send('Could not retrieve data'))
+  let subcatsWithCategoryChosen = await knex('subcategory')
+  .where({category_id: req.params.category})
+  .select('subcategory.id as id');
+  console.log(subcatsWithCategoryChosen);
+  for (let i = 0; i < subcatsWithCategoryChosen.length; i ++)
+  {
+    console.log(subcatsWithCategoryChosen[i].id);
+    await knex('equipment')
+    .where({subcategory_id: subcatsWithCategoryChosen[i].id})
+    .then(data => {
+      console.log(data)
+      for(let j = 0; j < data.length; j ++)
+      {
+        result.push(data[j]);
+      }
+    })
+    .catch(() => res.status(404).send('Could not retrieve data'))
+  }
+  console.log(result)
+  
+  res.status(200).json(result);
+  
   // knex
   // .select('*')
   // .from('category')
   // .then(data => {res.status(200).json(data)})
   // .catch(() => res.status(404).send('Could not category data'))
 })
-app.get('/equipment/category/:subcategory', async (req, res) => {
+app.get('/equipment/subcategory/:subcategory_id', async (req, res) => {
   console.log('getting equipment data in this subcategory');
-  let temp = await knex('category').where({name: req.params.subcategory})
-  console.log(req.params.subcategory);
-  console.log(temp);
+  // let temp = await knex('category').where({name: req.params.subcategory_id})
+  // console.log(req.params.subcategory_id);
+  // console.log(temp);
   knex('equipment')
-  .where({subcategory_id: req.params.subcategory})
+  .where({subcategory_id: req.params.subcategory_id})
   .then(data => {
     if (data.length === 0)
-      res.status(404).send('Could not retrieve data');
+      res.status(404).send('Could not retrieve data from database');
     else
       res.status(200).json(data);
   })
   .catch(() => res.status(404).send('Could not retrieve data'))
-  // knex
-  // .select('*')
-  // .from('subcategory')
-  // .then(data => {res.status(200).json(data)})
-  // .catch(() => res.status(404).send('Could not subcategory data'))
 })  
 app.get('/mission', (req, res) => {
   console.log('getting mission data');
@@ -93,18 +103,6 @@ app.get('/mission', (req, res) => {
 
 app.get('/mission/:id', async (req, res) => {
   console.log('getting mission id');
-  
-  // TEST NESTED JOIN
-  // let temp = await knex.select('*').from('mission_equipment').join('accounts', function() {
-  //   this.on(function() {
-  //     this.on('accounts.id', '=', 'users.account_id')
-  //     this.orOn('accounts.owner_id', '=', 'users.id')
-  //   })
-  // })
-  
-  // console.log('what our test returned: ', temp);
-  // TEST NESTED JOIN
-
   let missionEquipment = await knex('mission_equipment')
   .join('equipment', 'equipment.id', '=', 'mission_equipment.equipment_id')
   .join('meta', 'meta.id', '=', 'mission_equipment.meta_id')
