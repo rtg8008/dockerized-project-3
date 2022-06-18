@@ -65,32 +65,32 @@ app.get('/equipment', (req, res) => {
 // gets info on equipment with specified id
 app.get('/equipment/:id', (req, res) => {
   console.log('getting equipment id');
-  // join test
-  /*
-  let missionEquipment = await knex('mission_equipment')
+  knex('mission_equipment')
   .join('equipment', 'equipment.id', '=', 'mission_equipment.equipment_id')
-  .join('meta', 'meta.id', '=', 'mission_equipment.meta_id')
   .join('subcategory', 'subcategory.id', '=', 'equipment.subcategory_id')
   .join('category', 'category.id', '=', 'subcategory.category_id')
-  .where('mission_equipment.mission_id', req.params.id)
-  .select('equipment.id as equipment_id',
-        'equipment.name as equipment_name',
+  .where('mission_equipment.equipment_id', req.params.id)
+  .select('equipment.id as id',
+        'equipment.name as name',
         'category.name as category',
-        // 'equipment.subcategory_id as subcategory_id',
         'subcategory.name as subcategory',
         'equipment.caliber as caliber',
         'equipment.max_range_meters as maxrangemeters',
         'equipment.armored as armored',
         'equipment.country as country',
         'equipment.image as image',
-        'meta.quantity as quantity',
-        'meta.location_lat as lat',
-        'meta.location_long as lon',
-        'meta.phase as phase'
         )
-  */
-  
-// join test
+  .then(data => {
+    if (data.length === 0)
+      res.status(404).send('Could not retrieve data');
+    else
+      res.status(200).json(data[0]); // added [0] to send object instead of array
+  })
+  .catch(() => res.status(404).send('Could not retrieve data'))
+})
+
+// Friday // 
+/*
   knex
   .select('*')
   .from('equipment')
@@ -99,10 +99,12 @@ app.get('/equipment/:id', (req, res) => {
     if (data.length === 0)
       res.status(404).send('Could not retrieve data');
     else
-      res.status(200).json(data);
+      res.status(200).json(data); // added [0] to send object instead of array
   })
   .catch(() => res.status(404).send('Could not retrieve data'))
 })
+*/
+// Friday // 
 
 // --------------BREAK-----------------//
 

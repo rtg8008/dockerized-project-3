@@ -1,11 +1,6 @@
-//imports begin
 import  React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Details } from './StyleAddEquipment.js'
-//imports end
-
-
-
 
 function AddMissionEquipmentPage() {//app below
   const letParams = useParams();
@@ -62,16 +57,9 @@ function AddMissionEquipmentPage() {//app below
             </Details>
           )
         })}
-
       </div>
     </>
-
   );
-
-
-
 }
-
-
 
 export default AddMissionEquipmentPage;

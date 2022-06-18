@@ -1,7 +1,7 @@
 import React, { useState, useEffect }from 'react';
 import {useNavigate, Link} from 'react-router-dom';
 import InputSubmit from "./inputSubmit/inputSubmit"
-import { Mission, Background, Input  } from './StyledHomePage';
+import { Mission, Background, Input, StyledBackground  } from './StyledHomePage';
 
 
 
@@ -43,8 +43,7 @@ const HomePage = () => {
       console.log(data);
       nav(`/add-weapons/${data[data.length-1].id}`)
     })
-    //nav('/mission/'+input)
-    //we will need to send a post request to create a new empty mission
+
   }
 
   const searchHandler = (e) => {
@@ -58,7 +57,8 @@ const HomePage = () => {
  
   
       return (
-      <Background>
+      <StyledBackground>
+      {/* <Background> */}
         {/* <InputSubmit func ={(inputValue)=>createMission(inputValue)} buttonName = "create" placeHolderText = "Create a New Mission"/> */}
         <input id="statement" placeholder="Insert Mission Statement"/> 
         <input type ="text" id="lat" placeholder="Insert Latitude of mission"/> 
@@ -75,7 +75,8 @@ const HomePage = () => {
           {element.statement}</Mission>
         ))
         }
-      </Background>
+      {/* </Background> */}
+      </StyledBackground>
     );
 }
 
@@ -85,3 +86,4 @@ export default HomePage;
 // const SearchBar = () => {
 //   const {selectedMovie} = useContext(MovieSelectContext);
 //   const {searchInput, setSearchInput} = useContext(QueryContext)
+
