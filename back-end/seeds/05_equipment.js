@@ -13,7 +13,9 @@ exports.seed = async function(knex) {
     {name: 'FOX Armored Scout Car', subcategory_id: 1, caliber: '30mm', max_range_meters: 1100, armored: true, country: 'British', image: 'https://commons.wikimedia.org/wiki/File:FV721_Fox_armoured_fighting_vehicle_(2008-08-09).jpg'},
     {name: 'EE-9 CASCAVEL', subcategory_id: 1, caliber: '90mm', max_range_meters: 2000, armored: true, country: 'Brazilians', image: 'https://commons.wikimedia.org/wiki/File:2P27_01.JPG'},
   // 1.2 Reconnaissance - Reconnaissance Systems
-  // 2.1: Infantry Weapons - Small Arms
+    {name: 'FARA-1E', subcategory_id: 2, caliber: null, max_range_meters: 5000, armored: false, country: 'Russian', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/SBR-5M_-_4thTankDivisionOpenDay17p2-34.jpg/1280px-SBR-5M_-_4thTankDivisionOpenDay17p2-34.jpg'},
+    {name: 'SOPHIE LR', subcategory_id: 2, caliber: null, max_range_meters: null, armored: false, country: 'French', image: 'https://upload.wikimedia.org/wikipedia/commons/e/e7/Sophie_%C2%A9B._Rousseau.jpg'},
+    // 2.1: Infantry Weapons - Small Arms
     {name: 'FAL', subcategory_id: 3, caliber: '7.62x51mm NATO', max_range_meters: 600, armored: false, country: 'Belgian', image: 'https://dygtyjqp7pi0m.cloudfront.net/i/36526/31536191_1.jpg?v=8D6368F5BA07710'},
     {name: 'G3', subcategory_id: 3, caliber: '7.62x51mm NATO', max_range_meters: 400, armored: false, country: 'German', image: 'https://www.militaryfactory.com/smallarms/imgs/lrg/heckler-and-koch-hk-g3.jpg'},
     {name: 'SKS', subcategory_id: 3, caliber: '7.62x39mm', max_range_meters: 350, armored: false, country: 'Russian', image: 'https://th.bing.com/th/id/OIP.yRx-vnTfhhXGMiAHK7M0OQHaHa?pid=ImgDet&rs=1'},
