@@ -1,9 +1,7 @@
-//imports begin
 import  React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import NavHome from '../../ReusableComponents/NavHome.jsx';
-import { Background, Details, Image } from './StyleAddMissionEquipment.js'
-//imports end
+import { AddMission, Background, BackMission, Details, Image } from './StyleAddMissionEquipment.js'
 
 
 
@@ -49,8 +47,8 @@ function AddMissionEquipmentPage() {//app below
     <>
       <NavHome/>
       <Background>
-      <div>This is the add equipments page </div>
-      <button onClick={()=>{nav(`/mission/${letParams.missionId}`)}}>Go back to mission</button>
+      <h1>Add any equipment to the mission below:</h1>
+      <BackMission onClick={()=>{nav(`/mission/${letParams.missionId}`)}}>Go back to mission</BackMission>
       </Background>  
 
       <Background>
@@ -58,10 +56,10 @@ function AddMissionEquipmentPage() {//app below
           return (
             <Details key={element.id}>
               <Image src = {element.image} alt = {element.name} height="100px"/>
-              <div>{element.name}</div>
-              <button onClick={() => {
+              <h2>{element.name}</h2>
+              <AddMission onClick={() => {
                 addToMission(element.id)
-              }}>Add me to mission {letParams.missionId}</button>
+              }}>Add me to mission {letParams.missionId}</AddMission>
             </Details>
           )
         })}
