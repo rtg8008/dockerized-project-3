@@ -1,8 +1,10 @@
+import NavHome from "../ReusableComponents/NavHome";
 
 function DetailPage() {
 
     return (
       <>
+        <NavHome/>
         <img  alt = 'equipment'/>
       </>
     );

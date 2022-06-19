@@ -1,49 +1,57 @@
 import styled from 'styled-components';
 
-export const Logo = styled.img`
-  position: fixed;
-  top: 16px;
-  right: 16px;
-  width: 50px;
-  height: auto;
-  border-radius: 20px;
-  box-shadow: 0 0 8px 0 #889baf;
-  padding: 8px 16px;
-  z-index: 3000;
-  cursor: pointer;
-  // background-color: rose;
-  transition: all 0.4s;
 
-  &:hover {
-    box-shadow: 0 0 28px 0 #889baf;
-    background-color: Cornsilk;
-    transform: scale(1.1);
-  }
-`
-
-
-export const Mission = styled.div`
+// Background --------------------------------------------------
+export const Background = styled.div`
   border-radius: 20px;
   box-shadow: 0 0 8px 0 #889baf;
   padding: 16px;
   margin: 10px;
+  margin-bottom: 25px;
+  z-index: 1000;
+  background-color: AliceBlue;
+  transition: all 0.4s;
+  text-align: center;
+`
+// Create Mission ------------------------------------------------
+export const Insert = styled.input`
+  text-align: center;
+  width: 15em;
+  border-radius: 20px;
+  border: 0px;
+  box-shadow: 0 0 8px 0 #889baf;
+  padding: 8px;
+  margin-right: 16px;
+  margin-left: 16px;
   z-index: 3000;
   cursor: pointer;
-  background-color: CadetBlue;
-  color: Cornsilk;
+  background-color: Cornsilk;
   transition: all 0.4s;
-  
+`
+export const Create = styled.button`
+  border-radius: 20px;
+  box-shadow: 0 0 8px 0 #889baf;
+  border: 0;
+  width: 28em;
+  padding: 16px;
+  margin: 10px;
+  margin-bottom: 0px;
+  z-index: 3000;
+  cursor: pointer;
+  color: Cornsilk;
+  background-color: CadetBlue;
+  transition: all 0.4s;
+  text-align: center;
+
   &:hover {
-    box-shadow: 0 0 28px 0 #889baf;
     color: CadetBlue;
     background-color: Cornsilk;
-    transform: scale(1.1);
   }
 `
 
-export const Input = styled.input`
+// Search Mission ------------------------------------------------
+export const Search = styled.input`
   text-align: center;
-  margin-left: 17em;
   width: 25em;
   border-radius: 20px;
   border: 0px;
@@ -55,34 +63,23 @@ export const Input = styled.input`
   transition: all 0.4s;
 `
 
-export const Background = styled.div`
+export const Mission = styled.div`
   border-radius: 20px;
   box-shadow: 0 0 8px 0 #889baf;
   padding: 16px;
   margin: 10px;
+  margin-bottom: 0px;
   z-index: 3000;
   cursor: pointer;
-  background-color: AliceBlue;
-  color: salmon;
+  background-color: CadetBlue;
+  color: Cornsilk;
   transition: all 0.4s;
-`
-export const Delete = styled.img`
-  position: fixed;
-  bottom: 16px;
-  right: 16px;
-  width: 50px;
-  height: auto;
-  border-radius: 20px;
-  box-shadow: 0 0 8px 0 #889baf;
-  padding: 8px 16px;
-  z-index: 3000;
-  cursor: pointer;
-  // background-color: rose;
-  transition: all 0.4s;
-
+  text-align: left;
+  
   &:hover {
     box-shadow: 0 0 28px 0 #889baf;
-    background-color: Crimson;
+    color: CadetBlue;
+    background-color: Cornsilk;
     transform: scale(1.1);
   }
 `

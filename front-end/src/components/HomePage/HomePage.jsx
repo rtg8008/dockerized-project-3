@@ -1,7 +1,6 @@
 import React, { useState, useEffect }from 'react';
-import {useNavigate, Link} from 'react-router-dom';
-import InputSubmit from "./inputSubmit/inputSubmit"
-import { Mission, Background, Input  } from './StyledHomePage';
+import { useNavigate } from 'react-router-dom';
+import { Background, Insert, Create, Search, Mission } from './StyledHomePage';
 
 
 
@@ -9,11 +8,6 @@ const HomePage = () => {
   const nav = useNavigate();
   const [results, setResults] = useState([]);
   const [searchInput, setSearchInput] = useState('')
-
-  // let func = props.func
-  // let buttonName = props.buttonName
-  // let placeHolderText = props.placeHolderText
-
 
   useEffect(() => {
     fetch('http://localhost:8080/mission/')
@@ -43,8 +37,6 @@ const HomePage = () => {
       console.log(data);
       nav(`/add-weapons/${data[data.length-1].id}`)
     })
-    //nav('/mission/'+input)
-    //we will need to send a post request to create a new empty mission
   }
 
   const searchHandler = (e) => {
@@ -58,30 +50,31 @@ const HomePage = () => {
  
   
       return (
-      <Background>
-        {/* <InputSubmit func ={(inputValue)=>createMission(inputValue)} buttonName = "create" placeHolderText = "Create a New Mission"/> */}
-        <input id="statement" placeholder="Insert Mission Statement"/> 
-        <input type ="text" id="lat" placeholder="Insert Latitude of mission"/> 
-        <input id="lon" placeholder="Insert Longitude of mission"/> 
-        <button onClick={()=>{
-          createMission(document.getElementById('statement').value,
-          document.getElementById('lat').value,
-          document.getElementById('lon').value)
-        }}>Create new Mission</button>
+      <>
+        <Background>
+          <Insert id="statement" placeholder="Insert Mission Statement"/>  
+          <Insert type ="text" id="lat" placeholder="Insert Latitude of mission"/> 
+          <Insert id="lon" placeholder="Insert Longitude of mission"/>
+          <div> 
+            <Create onClick={()=>{
+              createMission(document.getElementById('statement').value,
+              document.getElementById('lat').value,
+              document.getElementById('lon').value)
+            }}>Create New Mission</Create>
+          </div>
+        </Background>
 
-        <Input type="text" placeholder="Search" onKeyUp={(e) => searchHandler(e)} />
-        {filteredResults.map(element => (
-          <Mission key={element.id} onClick={() => nav(`mission/${element.id}`)} >
-          {element.statement}</Mission>
-        ))
-        }
-      </Background>
+        <Background>
+            <Search type="text" placeholder="Search" onKeyUp={(e) => searchHandler(e)} />
+            {filteredResults.map(element => (
+              <Mission key={element.id} onClick={() => nav(`mission/${element.id}`)} >
+                {element.statement}
+              </Mission>
+            ))}
+        </Background>
+      </>
     );
 }
 
 
 export default HomePage;
-
-// const SearchBar = () => {
-//   const {selectedMovie} = useContext(MovieSelectContext);
-//   const {searchInput, setSearchInput} = useContext(QueryContext)

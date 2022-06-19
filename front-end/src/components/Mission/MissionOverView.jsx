@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { Delete } from '../HomePage/StyledHomePage.js';
-import { Details, AddEquipment } from './StyleMissionOverview.js'
+import NavHome from "../ReusableComponents/NavHome.jsx";
+import { Details, AddEquipment, Delete, Background, Category, Image } from './StyleMissionOverview.js'
 
 function MissionOverView() {//app below
   const letParams = useParams();
@@ -33,26 +33,30 @@ function MissionOverView() {//app below
   },[missionURL])
   return (
     <>
-    <h1>{results.statement}</h1>
-    <Details>{results.location_long}</Details>
-    <Details>{results.location_lat}</Details>
+    <NavHome/>
+    <Background>
+      <h1>{results.statement}</h1>
+      <Details>Longitude: {results.location_long}</Details>
+      <Details>Latitude: {results.location_lat}</Details>
+    </Background>
     {results.equipment.map(element => (
+    <Background>
       <div key={element.equipment_id}>
-        <Details>{element.equipment_name}</Details>
-        <Details>{element.category}</Details>
-        <Details>{element.subcategory}</Details>
-        <Details>{element.country}</Details>
-        <Details>Armored: {element.armored}</Details>
-        <Details>{element.lat}</Details>
-        <Details>{element.lon}</Details>
-        <Details>Quantity in Mission: {element.quantity}</Details>
-        <Details>{element.caliber}</Details>
-        <img style={{height: '100px'}} src = {element.image} alt = {element.name} onClick={() => nav(`/equipment/${element.equipment_id}`)}
-        ></img>
+        <Category>Equipment:</Category><Details>{element.equipment_name}</Details>
+        <div><Image style={{height: '100px'}} src = {element.image} alt = {element.name} onClick={() => nav(`/equipment/${element.equipment_id}`)}/></div>
+        <Category>Category:</Category><Details>{element.category}</Details>
+        <Category>Subcategory:</Category><Details>{element.subcategory}</Details>
+        <Category>Country:</Category><Details>{element.country}</Details>
+        <Category>Armored:</Category><Details>{element.armored.toString()}</Details>
+        <Category>Latitude:</Category><Details>{element.lat}</Details>
+        <Category>Longitude:</Category><Details>{element.lon}</Details>
+        <Category>Quantity in Mission:</Category><Details>{element.quantity}</Details>
+        <Category>Caliber:</Category><Details>{element.caliber}</Details>
       </div>
+    </Background>
     ))}
-    <div><Delete src='/logo512.png' alt='HomeLogo' data-testid='nav-to-home-page' onClick={() => deleteSelf()}/></div> 
-    <div><AddEquipment src='/logo512.png' alt='AddEquipLogo' data-testid='nav-to-add-equipment-page' onClick={() => nav(`/add-weapons/${letParams.missionId}`)}></AddEquipment></div>
+    <div><Delete src='/images/deletelogo.png' alt='DeleteMissionLogo' data-testid='nav-to-home-page' onClick={() => deleteSelf()}/></div> 
+    <div><AddEquipment src='/images/addlogo.png' alt='AddEquipLogo' data-testid='nav-to-add-equipment-page' onClick={() => nav(`/add-weapons/${letParams.missionId}`)}></AddEquipment></div>
     </>
   )
 

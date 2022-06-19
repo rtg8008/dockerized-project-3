@@ -59,12 +59,12 @@ export const Background= styled.div`
 // Equipment Details --------------------------------------------
 export const Image = styled.img`
   border-radius: 50%;
-  box-shadow: 0 0 8px 0 #889baf;
+  // box-shadow: 0 0 8px 0 #889baf;
   margin-top: 10px;
   padding: 4px 4px;
   z-index: 3000;
   cursor: pointer;
-  background-color: CadetBlue;
+  // background-color: CadetBlue;
   transition: all 0.4s;
 
   &:hover {
@@ -91,10 +91,11 @@ export const Category = styled.div`
 `
 
 export const Details = styled.div`
-  display: inline-block;
+  // display: grid;
+  // grid-auto-column: auto;
   border-radius: 20px;
   box-shadow: 0 0 8px 0 #889baf;
-  width: 40%;
+  // width: 40%;
   padding: 16px;
   margin: 10px;
   margin-bottom: 0px;
@@ -102,10 +103,6 @@ export const Details = styled.div`
   background-color: CadetBlue;
   color: Cornsilk;
   transition: all 0.4s;
-  text-align: center;
+  // text-align: center;
   }
 `
-
-
-
-
