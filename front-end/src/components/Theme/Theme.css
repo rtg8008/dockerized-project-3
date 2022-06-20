@@ -2,7 +2,7 @@
   /* background: white; */
   background-image: url('../../../public/images/arms.jpg');
   background-repeat: no-repeat;
-  background-attachment: fixed;
+  /* background-attachment: fixed; */
   background-size: cover;
 }
 
@@ -10,7 +10,7 @@
   /* background: #282c34;  */
   background-image: url('../../../public/images/arms.jpg');
   background-repeat: no-repeat;
-  background-attachment: fixed;
+  /* background-attachment: fixed; */
   background-size: cover;
 }
 
@@ -29,6 +29,7 @@
   display: inline-block;
   width: 60px;
   height: 34px;
+  z-index: 500;
 }
 
 /* Hide default HTML checkbox */

@@ -2,6 +2,7 @@ import NavHome from "../ReusableComponents/NavHome";
 import React,{useState, useEffect} from 'react';
 import {useParams} from 'react-router-dom';
 import styled from 'styled-components';
+import { Background, Category, Details } from './StyledDetailsPage.js';
 
 function DetailPage() {
   let { id } = useParams();
@@ -15,20 +16,20 @@ function DetailPage() {
       <>
         <NavHome/>
 
-        <StyledBackground>
+        <Background>
           <StyledHeader>{equipment.name}</StyledHeader>
           <StyledImage src={equipment.image} alt = 'equipment'/>
           <StyledSpecs>
             <ul>
-              <li><strong>Category:</strong> {equipment.category ? `${equipment.category}` : 'N/A'}</li>
-              <li><strong>Subcategory:</strong> {equipment.subcategory ? `${equipment.subcategory}` : 'N/A'}</li>
-              <li><strong>Caliber:</strong> {equipment.caliber ? `${equipment.caliber}` : 'N/A'}</li>
-              <li><strong>Max range meters:</strong> {equipment.maxrangemeters ? `${equipment.maxrangemeters}` : 'N/A'}</li>
-              <li><strong>Armored:</strong> {equipment.armored ? 'True' : 'False'}</li>
-              <li><strong>Country:</strong> {equipment.country ? `${equipment.country}` : 'N/A'}</li>
+              <Category>Category:</Category><Details> {equipment.category ? `${equipment.category}` : 'N/A'}</Details>
+              <Category>Subcategory:</Category><Details> {equipment.subcategory ? `${equipment.subcategory}` : 'N/A'}</Details>
+              <Category>Caliber:</Category><Details> {equipment.caliber ? `${equipment.caliber}` : 'N/A'}</Details>
+              <Category>Max range meters:</Category><Details> {equipment.maxrangemeters ? `${equipment.maxrangemeters}` : 'N/A'}</Details>
+              <Category>Armored:</Category><Details> {equipment.armored ? 'True' : 'False'}</Details>
+              <Category>Country:</Category><Details> {equipment.country ? `${equipment.country}` : 'N/A'}</Details>
             </ul>
           </StyledSpecs>
-        </StyledBackground>  
+        </Background>  
       </>
 
     );

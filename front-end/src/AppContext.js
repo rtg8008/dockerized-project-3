@@ -30,6 +30,15 @@ const AppProvider = ({ children }) => {
     table.string('image', 1024);
 */
 
+const [metaContext, setMetaContext] = useState( {
+  id: '',
+  quantity: '',
+  phase: '',
+  location_lat: '',
+  location_long: '',
+});
+
+
   const values = {
     equipmentDetails
   }

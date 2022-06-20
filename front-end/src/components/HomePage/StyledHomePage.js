@@ -9,6 +9,7 @@ export const Header = styled.div`
   margin-top: 1%;
   margin-left: 25%;
   margin-right: 25%;
+  margin-bottom: 10%;
   background-color: rgba(255,255,255, 0.4);
   backdrop-filter: blur(8px);
   transition: all 0.4s;
@@ -78,7 +79,9 @@ export const Background = styled.div`
   box-shadow: 0 0 8px 0 #222;
   padding: 16px;
   margin: 10px;
-  margin-top: 20%;
+  margin-top: 5%;
+  margin-left: 10%;
+  margin-right: 10%;
   z-index: 1000;
   // background-color: rgba(255,255,255, 0.1);
   backdrop-filter: blur(8px);
@@ -129,7 +132,8 @@ export const Search = styled.input`
   padding: 16px;
   z-index: 3000;
   cursor: pointer;
-  background-color: #FFFEFE;
+  margin-top: 20px;
+  background-color: Cornsilk;
   transition: all 0.4s;
   color: DarkSlateGray;
 `
@@ -146,12 +150,13 @@ export const Mission = styled.div`
   color: Cornsilk;
   transition: all 0.4s;
   text-align: left;
+  text-transform: uppercase;
   
   &:hover {
     box-shadow: 0 0 28px 0 #222;
     color: DarkSlateGray;
     background-color: Cornsilk;
-    transform: scale(1.1);
+    transform: scale(1.02);
   }
 `
 export const StyledBackground = styled.div`
@@ -162,6 +167,7 @@ export const StyledBackground = styled.div`
   text-align: center;
   width: 100vw;
   height: 97.3vh;
+  filter: blur(8px);
 `;
 
 export const StyledHeader = styled.h1`

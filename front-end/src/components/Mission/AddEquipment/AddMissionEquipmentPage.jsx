@@ -15,28 +15,56 @@ function AddMissionEquipmentPage() {//app below
   const [equipmentData, setEquipmentData] = useState([])
   const [categories, setCategories] = useState([{name: ''}])
   const [subcategories, setSubcategories] = useState([{name: ''}])
+  const [results, setResults] = useState({equipment: [], statement: ''})
+  const missionURL = 'http://localhost:8080/mission/' + letParams.missionId
+
 
   const nav = useNavigate();
+  // useEffect(() => {
+  //   fetch('http://localhost:8080/equipment')
+  //   .then(res => res.json())
+  //   .then(data => {
+  //     console.log(data)
+  //     setEquipmentData(data)}
+  //   )
+  //   fetch('http://localhost:8080/category')
+  //   .then(res => res.json())
+  //   .then(data => {
+  //     console.log(data)
+  //     setCategories(data)}
+  //   )
+  //   fetch('http://localhost:8080/subcategory')
+  //   .then(res => res.json())
+  //   .then(data => {
+  //     console.log(data)
+  //     setSubcategories(data)}
+  //   )
+  // },[])
   useEffect(() => {
     fetch('http://localhost:8080/equipment')
     .then(res => res.json())
     .then(data => {
       console.log(data)
       setEquipmentData(data)}
-      )
-      fetch('http://localhost:8080/category')
-      .then(res => res.json())
-      .then(data => {
-        console.log(data)
-        setCategories(data)}
-        )
-        fetch('http://localhost:8080/subcategory')
-        .then(res => res.json())
-        .then(data => {
-          console.log(data)
-          setSubcategories(data)}
-          )
-  },[])
+    )
+    fetch('http://localhost:8080/category')
+    .then(res => res.json())
+    .then(data => {
+      console.log(data)
+      setCategories(data)}
+    )
+    fetch('http://localhost:8080/subcategory')
+    .then(res => res.json())
+    .then(data => {
+      console.log(data)
+      setSubcategories(data)}
+    )
+    fetch(missionURL)
+    .then(res => res.json())
+    .then(data => {
+      console.log(data)
+      setResults(data)})
+  },[missionURL])
   
   const searchByCategory = (category) => {
     console.log(`searching by category: `, category);
@@ -90,8 +118,8 @@ function AddMissionEquipmentPage() {//app below
         {
           "phase": 1,
           "quantity": 1,
-          "location_lat" : 123,
-          "location_long": 123
+          "location_lat" : results.location_lat,
+          "location_long": results.location_long
         } 
       )
     }
@@ -180,9 +208,9 @@ function AddMissionEquipmentPage() {//app below
             <Details key={element.id}>
               <img src = {element.image} alt = {element.name} height="100px" onClick={()=>{nav(`/equipment/${element.id}`)}}></img>
               <div>{element.name}</div>
-              <StyledButton onClick={() => {
-                addToMission(element.id)
-              }}>Add me to mission {letParams.missionId}</StyledButton>
+                <AddMission src='/images/addlogo.png' alt='AddEquipmentLogo' title='Add Equipment to Mission' onClick={() => {
+                  addToMission(element.id)
+                }}/>
             </Details>
           )
         })
@@ -195,10 +223,13 @@ function AddMissionEquipmentPage() {//app below
   else{
     return (
       <>
-        <div>
-          <ReturnToMissionOverview src='/tradoc-logo.png' alt='AddEquipLogo' data-testid='nav-back-to-mission-overview' onClick={()=>{
-            nav(`/mission/${letParams.missionId}`);
-          }} />
+        <NavHome/>
+        <Background>
+          <h1>Add any equipment to the mission below:</h1>
+          <BackMission onClick={()=>{nav(`/mission/${letParams.missionId}`)}}>Go back to mission</BackMission>
+        </Background>  
+
+        <Background>
           <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
             <InputLabel id="categorySelect-label">Category</InputLabel>
             <Select
@@ -245,7 +276,7 @@ function AddMissionEquipmentPage() {//app below
           <h2>{
             `No Equipment Information Found Here`
           }</h2>
-        </div>
+        </Background>
       </>
     );
   }

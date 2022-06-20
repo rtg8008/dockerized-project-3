@@ -6,7 +6,19 @@ import Box from '@mui/material/Box';
 import { StyledBackground } from '../HomePage/StyledHomePage';
 import { GridContainerDiv, StyledFormDiv, StyledFormDivLeft, StyledFormDivRight } from './StyledAddEquipmentPage';
 import SendIcon from '@mui/icons-material/Send';
+import NavHome from '../ReusableComponents/NavHome';
+import { styled } from '@mui/material/styles';
 
+const ColorButton = styled(Button)(({ theme }) => ({
+  'margin': '10px',
+  color: `#FFF8DC`,
+  backgroundColor: '#2F4F4F',
+  transition: `all 0.4s`,
+  '&:hover': {
+    backgroundColor: `#FFF8DC`,
+    color: '#2F4F4F'
+  }
+}));
 
 const AddEquipmentPage = () => {
   const nav = useNavigate();
@@ -51,24 +63,25 @@ const AddEquipmentPage = () => {
         .then(res => res.json())
         .then(data => {
           console.log('Equipment now in Database: ', data);
+          alert('New equipment added to the database!')
         })
 
       }
 
       return (
-      <StyledBackground>
-        <GridContainerDiv>
-          <StyledFormDivLeft></StyledFormDivLeft>
-          <StyledFormDiv>
-            <Button onClick={SubmitButtonHandler} sx={{'margin-top': '1vw'}} variant="contained" endIcon={<SendIcon />}>
-              Submit
-            </Button>
+        <>
+      {/* <StyledBackground> */}
+        {/* <GridContainerDiv> */}
+        {/* <NavHome/> */}
+          {/* <StyledFormDiv> */}
             <Box
               component="form"
               sx={{
                 '& > :not(style)': { m: 1, width: '25ch',
-                'margin-top': '8vw'
-
+                'margin-top': '2vh',
+                bgcolor: '#FFF8DC',
+                boxShadow: 5,
+                inputProps: 'blue',
               },
               }}
               noValidate
@@ -119,10 +132,13 @@ const AddEquipmentPage = () => {
               </Select>
               </FormControl>
             </Box>
-          </StyledFormDiv>
-          <StyledFormDivRight></StyledFormDivRight>
-        </GridContainerDiv>
-      </StyledBackground>
+                <ColorButton onClick={SubmitButtonHandler} sx={{'margin-top': '2vh', bgcolor: '#2F4F4F', color: '#FFF8DC', boxShadow: 5}} variant="contained" endIcon={<SendIcon />}>
+                  Submit
+                </ColorButton>
+          {/* </StyledFormDiv> */}
+        {/* </GridContainerDiv> */}
+      {/* </StyledBackground> */}
+    </>
     );
 }
 

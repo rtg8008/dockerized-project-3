@@ -6,7 +6,7 @@ const NavHome = () => {
 
   return(
     <>
-     <Logo src='/images/homelogo.png' alt='Home Logo' data-testid='nav-to-home-page' onClick={() => {nav('/')}}/>
+     <Logo src='/images/homelogo.png' alt='Home Logo' title='Return Home' data-testid='nav-to-home-page' onClick={() => {nav('/')}}/>
     </>
   )
 }

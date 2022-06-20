@@ -64,10 +64,9 @@ export const Image = styled.img`
   border-radius: 50%;
   box-shadow: 0 0 8px 0 #222;
   margin-top: 10px;
-  padding: 4px 4px;
   z-index: 3000;
   cursor: pointer;
-  background-color: DarkSlateGray;
+  border: 1px solid #222;
   transition: all 0.4s;
 
   &:hover {
@@ -106,6 +105,22 @@ export const Details = styled.div`
   color: Cornsilk;
   transition: all 0.4s;
   text-align: center;
+  }
+`
+export const DeleteEquipmentFromMission = styled.img`
+  width: 25px;
+  height: auto;
+  border-radius: 50%;
+  box-shadow: 0 0 8px 0 #222;
+  padding: 8px 8px;
+  z-index: 3000;
+  cursor: pointer;
+  transition: all 0.4s;
+
+  &:hover {
+    box-shadow: 0 0 28px 0 #222;
+    background-color: Maroon;
+    transform: scale(1.1);
   }
 `
 
