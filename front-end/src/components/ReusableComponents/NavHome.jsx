@@ -1,17 +1,30 @@
 import {useNavigate } from 'react-router-dom';
-import { Logo } from '../HomePage/StyledHomePage.js';
+import Button from '@mui/material/Button';
+import HomeIcon from '@mui/icons-material/Home';
+import styled from 'styled-components';
+
 
 const NavHome = () => {
   const nav = useNavigate();
-  // const navigateHome = () => {
-  //   nav('/')
-  // }
   return(
-    <>
-     <Logo  src='/logo512.png' alt='PintokartLogo' data-testid='nav-to-home-page' onClick={() => {nav('/')}}/>
-    {/* <button onClick={navigateHome}>Home</button> */}
-    </>
+    <StyledDiv>
+      <StyledTitle>Worldwide Equipment Guide</StyledTitle>
+      <Button onClick={() => {
+        nav('/');
+        }} variant="link" size="large" startIcon={<HomeIcon />}>Home</Button>    
+    </StyledDiv>
   )
 }
 
 export default NavHome;
+
+const StyledDiv = styled.div`
+  background-color: #182030;
+  color: white;
+  margin-top: 0;
+  text-align: center;
+`
+const StyledTitle = styled.h1`
+  margin: 0;
+  padding-top: 16px;
+`

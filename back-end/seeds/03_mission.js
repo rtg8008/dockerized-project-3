@@ -6,10 +6,10 @@ exports.seed = async function(knex) {
   // Deletes ALL existing entries
   await knex('mission').del()
   await knex('mission').insert([
-    { statement: 'mission statement 1', location_lat: 123.432, location_long: 1234.23},
-    { statement: 'mission statement 2', location_lat: 143.23, location_long: 1287.23},
-    { statement: 'mission statement 3', location_lat: 875.2345, location_long: 1654.3},
-    { statement: 'mission statement 4', location_lat: 2345.34, location_long: 127.654},
-    { statement: 'mission statement 5', location_lat: 7866.44, location_long: 1134.3}
+    { statement: 'OPERATION ROLLING THUNDER', location_lat: 21.031792, location_long: 105.841513},
+    { statement: 'operation red dawn', location_lat: 34.455636, location_long: 43.799959},
+    { statement: 'operation vittles', location_lat: 50.076732, location_long: 8.248708},
+    { statement: 'exercise dragon sage', location_lat: 40.223624, location_long: -112.755548},
+    { statement: 'exercise splintered spear', location_lat: 21.342521, location_long: -157.941031}
   ]);
 };

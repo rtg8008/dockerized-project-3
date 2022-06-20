@@ -12,9 +12,6 @@ function MissionOverView() {//app below
   const deleteSelf = () => {
     const init = {
       method: 'DELETE',
-      // headers: {
-      //   'Content-Type': 'application/json;charset=utf-8'
-      // },
     }
     fetch(missionURL, init)
     .then(res => res.json())
@@ -34,41 +31,27 @@ function MissionOverView() {//app below
   return (
     <>
     <h1>{results.statement}</h1>
-    <Details>{results.location_long}</Details>
-    <Details>{results.location_lat}</Details>
+    <h2>Mission Details</h2>
+    <p><strong>Location:</strong> {results.location_lat}, {results.location_long}</p>
+    
     {results.equipment.map(element => (
-      <div key={element.equipment_id}>
+      <div key={element.equipment_id} onClick={() => nav(`/equipment/${element.equipment_id}`)}>
         <Details>{element.equipment_name}</Details>
-        <Details>{element.category}</Details>
+        {/* <Details>{element.category}</Details>
         <Details>{element.subcategory}</Details>
         <Details>{element.country}</Details>
         <Details>Armored: {element.armored}</Details>
         <Details>{element.lat}</Details>
         <Details>{element.lon}</Details>
         <Details>Quantity in Mission: {element.quantity}</Details>
-        <Details>{element.caliber}</Details>
-        <img style={{height: '100px'}} src = {element.image} alt = {element.name} onClick={() => nav(`/equipment/${element.equipment_id}`)}
-        ></img>
+        <Details>{element.caliber}</Details> */}
+        <img style={{height: '100px'}} src = {element.image} alt = {element.name}></img>
       </div>
     ))}
     <div><Delete src='/logo512.png' alt='HomeLogo' data-testid='nav-to-home-page' onClick={() => deleteSelf()}/></div> 
     <div><AddEquipment src='/logo512.png' alt='AddEquipLogo' data-testid='nav-to-add-equipment-page' onClick={() => nav(`/add-weapons/${letParams.missionId}`)}></AddEquipment></div>
     </>
   )
-
-
-  // {//return below
-  //   return (
-  //     <>
-
-  //     </>
-  //   );
-  //   //return above}
-  //   {//Hoisted helper functions below
-    
-  //   //HelperFunctions Hoisted end
-  //   }
-  // }
 }
 
 export default MissionOverView;

@@ -1,13 +1,9 @@
-//imports begin
 import  React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Details } from './StyleAddEquipment.js'
 import {FormControl, MenuItem, InputLabel} from '@mui/material'
-//imports end
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-
-
-
+//imports end
 
 function AddMissionEquipmentPage() {//app below
   const [category, setCategory] = useState('');
@@ -171,16 +167,9 @@ function AddMissionEquipmentPage() {//app below
             </Details>
           )
         })}
-
       </div>
     </>
-
   );
-
-
-
 }
-
-
 
 export default AddMissionEquipmentPage;
