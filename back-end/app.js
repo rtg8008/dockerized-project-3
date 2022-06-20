@@ -65,11 +65,10 @@ app.get('/equipment', (req, res) => {
 // gets info on equipment with specified id
 app.get('/equipment/:id', (req, res) => {
   console.log('getting equipment id');
-  knex('mission_equipment')
-  .join('equipment', 'equipment.id', '=', 'mission_equipment.equipment_id')
+  knex('equipment')
   .join('subcategory', 'subcategory.id', '=', 'equipment.subcategory_id')
   .join('category', 'category.id', '=', 'subcategory.category_id')
-  .where('mission_equipment.equipment_id', req.params.id)
+  .where('equipment.id', req.params.id)
   .select('equipment.id as id',
         'equipment.name as name',
         'category.name as category',

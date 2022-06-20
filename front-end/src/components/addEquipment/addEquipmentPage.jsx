@@ -13,7 +13,7 @@ const AddEquipmentPage = () => {
   const [subcategory, setSubcategory] = useState('');
   const [subcategories, setSubcategories] = useState([])
   const [isArmored, setIsArmored] = useState(true);
-
+  const [missionInventory, setMissionInventory] = useState([]);
 
   // let func = props.func
   // let buttonName = props.buttonName
