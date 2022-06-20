@@ -7,7 +7,7 @@ import NavHome from './components/ReusableComponents/NavHome';
 import HomePage from './components/HomePage/HomePage'
 import MissionOverView from './components/Mission/MissionOverView';
 import AddMissionEquipmentPage from './components/Mission/AddEquipment/AddMissionEquipmentPage';
-
+import AddEquipmentPage from './components/addEquipment/addEquipmentPage';
 function App() {
 
   return (
@@ -22,6 +22,8 @@ function App() {
             <Route path="/add-weapons/:missionId" element={<AddMissionEquipmentPage/>}/>
             {/*  */}
             <Route path="/equipment/:id" element={<DetailPage/>}/>
+            {/*  */}
+            <Route path="/add-weapons" element = {<AddEquipmentPage/>} />
             {/*  */}
         </Routes> 
       </AppProvider>

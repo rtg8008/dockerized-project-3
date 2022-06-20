@@ -1,18 +1,18 @@
 import  React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Details } from './StyleAddEquipment.js'
-import {FormControl, MenuItem, InputLabel} from '@mui/material'
+import {FormControl, MenuItem, InputLabel, Button} from '@mui/material'
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { ReturnToMissionOverview } from './StyleAddEquipment.js';
+import { ReturnToMissionOverview, StyledButton } from './StyleAddEquipment.js';
 //imports end
 
 function AddMissionEquipmentPage() {//app below
-  const [category, setCategory] = useState('');
-  const [subcategory, setSubcategory] = useState('');
+  const [category, setCategory] = useState(0);
+  const [subcategory, setSubcategory] = useState(0);
   const letParams = useParams();
   const [equipmentData, setEquipmentData] = useState([])
-  const [categories, setCategories] = useState([])
-  const [subcategories, setSubcategories] = useState([])
+  const [categories, setCategories] = useState([{name: ''}])
+  const [subcategories, setSubcategories] = useState([{name: ''}])
 
   const nav = useNavigate();
   useEffect(() => {
@@ -103,8 +103,9 @@ function AddMissionEquipmentPage() {//app below
   const getCategoryID = (subcategoryID) => {
     return subcategories[subcategoryID-1].category_id;
   }
-
-  return (
+  // conditional returns depending if there is equipment to display
+  if (equipmentData.length > 0){
+    return (
     <>
       <div>
         <ReturnToMissionOverview src='/tradoc-logo.png' alt='AddEquipLogo' data-testid='nav-back-to-mission-overview' onClick={()=>{
@@ -160,20 +161,91 @@ function AddMissionEquipmentPage() {//app below
           </Select>
         </FormControl>
         {/* <button onClick={searchBySubcategory(`document.getElementById('subcategorySelect').value`)}>Search by Subcategory</button> */}
-        {equipmentData.map((element, index)=>{
+        {
+        equipmentData.map((element, index)=>{
           return (
             <Details key={element.id}>
-              <img src = {element.image} alt = {element.name} height="100px"></img>
+              <img src = {element.image} alt = {element.name} height="100px" onClick={()=>{nav(`/equipment/${element.id}`)}}></img>
               <div>{element.name}</div>
-              <button onClick={() => {
+              <StyledButton onClick={() => {
                 addToMission(element.id)
-              }}>Add me to mission {letParams.missionId}</button>
+              }}>Add me to mission {letParams.missionId}</StyledButton>
             </Details>
           )
-        })}
+        })
+        }
       </div>
     </>
-  );
+    );
+  } 
+  else{
+    return (
+      <>
+        <div>
+          <ReturnToMissionOverview src='/tradoc-logo.png' alt='AddEquipLogo' data-testid='nav-back-to-mission-overview' onClick={()=>{
+            nav(`/mission/${letParams.missionId}`);
+          }} />
+          <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+            <InputLabel id="categorySelect-label">Category</InputLabel>
+            <Select
+              labelId="categorySelect-label"
+              id="categorySelect"
+              value={category}
+              label="Category"
+              onChange={(event)=>{
+                event.preventDefault();
+                setCategory(event.target.value)
+                setSubcategory('');
+                searchByCategory(event.target.value);
+              }}
+            >
+              {/* <MenuItem value={10}>Ten</MenuItem>
+              <MenuItem value={20}>Twenty</MenuItem>
+              <MenuItem value={30}>Thirty</MenuItem>             */}
+              {categories.map((element, index) => {
+                return (
+                  <MenuItem value={element.id}>{element.name}</MenuItem>
+                )
+              })}
+            </Select>
+          </FormControl>
+          <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+            <InputLabel id="subcategorySelect-label">Subcategory</InputLabel>
+            <Select
+              labelId="subcategorySelect-label"
+              id="subcategorySelect"
+              value={subcategory}
+              label="Category"
+              onChange={(event)=>{
+                event.preventDefault();
+                setSubcategory(event.target.value)
+                searchBySubcategory(event.target.value);
+                setCategory(getCategoryID(event.target.value));
+  
+              }}
+            >
+              {/* <MenuItem value={10}>Ten</MenuItem>
+              <MenuItem value={20}>Twenty</MenuItem>
+              <MenuItem value={30}>Thirty</MenuItem>             */}
+              {subcategories.map((element, index) => {
+                return (
+                  <MenuItem value={element.id}>{element.name}</MenuItem>
+                )
+              })}
+            </Select>
+          </FormControl>
+          {/* <button onClick={searchBySubcategory(`document.getElementById('subcategorySelect').value`)}>Search by Subcategory</button> */}
+          <h2>{
+            `No Equipment Information Found Here`
+          }</h2>
+        </div>
+      </>
+    );
+  }
+
+
+
+
 }
 
 export default AddMissionEquipmentPage;
