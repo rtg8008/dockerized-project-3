@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { Details } from './StyleAddEquipment.js'
 import {FormControl, MenuItem, InputLabel} from '@mui/material'
 import Select, { SelectChangeEvent } from '@mui/material/Select';
+import { ReturnToMissionOverview } from './StyleAddEquipment.js';
 //imports end
 
 function AddMissionEquipmentPage() {//app below
@@ -99,17 +100,17 @@ function AddMissionEquipmentPage() {//app below
       alert(`Equipment ID: ${equipmentID} added to Mission ID: ${letParams.missionId}`)
     })
   }
-
-
+  const getCategoryID = (subcategoryID) => {
+    return subcategories[subcategoryID-1].category_id;
+  }
 
   return (
     <>
-      <div>This is the add equipments page </div>
       <div>
-        <button onClick={()=>{
+        <ReturnToMissionOverview src='/tradoc-logo.png' alt='AddEquipLogo' data-testid='nav-back-to-mission-overview' onClick={()=>{
           nav(`/mission/${letParams.missionId}`);
-        }}>Go back to mission</button>
-        <FormControl fullWidth>
+        }} />
+        <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
           <InputLabel id="categorySelect-label">Category</InputLabel>
           <Select
             labelId="categorySelect-label"
@@ -119,6 +120,7 @@ function AddMissionEquipmentPage() {//app below
             onChange={(event)=>{
               event.preventDefault();
               setCategory(event.target.value)
+              setSubcategory('');
               searchByCategory(event.target.value);
             }}
           >
@@ -132,7 +134,7 @@ function AddMissionEquipmentPage() {//app below
             })}
           </Select>
         </FormControl>
-        <FormControl fullWidth>
+        <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
           <InputLabel id="subcategorySelect-label">Subcategory</InputLabel>
           <Select
             labelId="subcategorySelect-label"
@@ -143,6 +145,8 @@ function AddMissionEquipmentPage() {//app below
               event.preventDefault();
               setSubcategory(event.target.value)
               searchBySubcategory(event.target.value);
+              setCategory(getCategoryID(event.target.value));
+
             }}
           >
             {/* <MenuItem value={10}>Ten</MenuItem>

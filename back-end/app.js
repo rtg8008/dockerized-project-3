@@ -144,10 +144,7 @@ app.get('/equipment/subcategory/:subcategory_id', async (req, res) => {
   knex('equipment')
   .where({subcategory_id: req.params.subcategory_id})
   .then(data => {
-    if (data.length === 0)
-      res.status(404).send('Could not retrieve data from database');
-    else
-      res.status(200).json(data);
+    res.status(200).json(data);
   })
   .catch(() => res.status(404).send('Could not retrieve data'))
 })
