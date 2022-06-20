@@ -49,7 +49,8 @@ const AddEquipmentPage = () => {
           max_range_meters: parseInt(document.getElementById('max-effective-range-textfield').value),
           armored: isArmored,
           country: document.getElementById('country-textfield').value,
-          image: document.getElementById('image-url-textfield').value
+          image: document.getElementById('image-url-textfield').value,
+          page_number: document.getElementById('page-number-textfield').value
         }
         console.log('Data Being Submitted: ', data)
         const init = {
@@ -87,6 +88,7 @@ const AddEquipmentPage = () => {
               noValidate
               autoComplete="off"
             >
+              <TextField id="page-number-textfield" label="WEG-Page-Number" variant="outlined" />
               <TextField id="name-textfield" label="Name" variant="outlined" />
               <TextField id="caliber-textfield" label="Caliber" variant="outlined" />
               <TextField id="max-effective-range-textfield" label="Max Effective Range" variant="outlined" />

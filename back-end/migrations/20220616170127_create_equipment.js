@@ -13,6 +13,7 @@
     table.boolean('armored');
     table.string('country', 256);
     table.string('image', 1024);
+    table.integer('page_number');
   })
 };
 

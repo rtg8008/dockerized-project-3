@@ -3,36 +3,66 @@ import React,{useState, useEffect} from 'react';
 import {useParams} from 'react-router-dom';
 import styled from 'styled-components';
 import { Background, Category, Details } from './StyledDetailsPage.js';
+// import weg from '../../../public/weg.pdf';
+import {Document, Page, pdfjs} from 'react-pdf';
 
 function DetailPage() {
   let { id } = useParams();
   const [equipment, setEquipment] = useState({})
+  const [finishedLoading, setFinishedLoading] = useState(false)
   useEffect(() => {
     fetch(`http://localhost:8080/equipment/${id}`)
     .then(res => res.json())
-    .then(data => setEquipment(data)) 
+    .then(data => {
+      setEquipment(data)
+      setFinishedLoading(true);
+    }) 
   },[])
-    return (
-      <>
-        <NavHome/>
+    if(finishedLoading){
+      return (
+        <>
+          <NavHome/>
+  
+          <Background>
+            <StyledHeader>{equipment.name}</StyledHeader>
+            <StyledImage src={equipment.image} alt = 'equipment'/>
+            <StyledSpecs>
+              <ul>
+                <Category>Category:</Category><Details> {equipment.category ? `${equipment.category}` : 'N/A'}</Details>
+                <Category>Subcategory:</Category><Details> {equipment.subcategory ? `${equipment.subcategory}` : 'N/A'}</Details>
+                <Category>Caliber:</Category><Details> {equipment.caliber ? `${equipment.caliber}` : 'N/A'}</Details>
+                <Category>Max range meters:</Category><Details> {equipment.maxrangemeters ? `${equipment.maxrangemeters}` : 'N/A'}</Details>
+                <Category>Armored:</Category><Details> {equipment.armored ? 'True' : 'False'}</Details>
+                <Category>Country:</Category><Details> {equipment.country ? `${equipment.country}` : 'N/A'}</Details>
+              </ul>
+            </StyledSpecs>
+          </Background>  
+          <iframe src={`https://upload.wikimedia.org/wikipedia/commons/1/1f/WorldwideEquipmentGuide_2015_Ground_Systems.pdf#page=${equipment.page_number}`}  width="90%" height="1000px" style={{marginRight: '5%', marginLeft: '5%'}}></iframe>
+        </>
+  
+      );
+    } else{
+      return (
+        <>
+          <NavHome/>
+          <Background>
+            <StyledHeader>{equipment.name}</StyledHeader>
+            <StyledImage src={equipment.image} alt = 'equipment'/>
+            <StyledSpecs>
+              <ul>
+                <Category>Category:</Category><Details> {equipment.category ? `${equipment.category}` : 'N/A'}</Details>
+                <Category>Subcategory:</Category><Details> {equipment.subcategory ? `${equipment.subcategory}` : 'N/A'}</Details>
+                <Category>Caliber:</Category><Details> {equipment.caliber ? `${equipment.caliber}` : 'N/A'}</Details>
+                <Category>Max range meters:</Category><Details> {equipment.maxrangemeters ? `${equipment.maxrangemeters}` : 'N/A'}</Details>
+                <Category>Armored:</Category><Details> {equipment.armored ? 'True' : 'False'}</Details>
+                <Category>Country:</Category><Details> {equipment.country ? `${equipment.country}` : 'N/A'}</Details>
+              </ul>
+            </StyledSpecs>
+          </Background>  
+        </>
+      );
+    }
 
-        <Background>
-          <StyledHeader>{equipment.name}</StyledHeader>
-          <StyledImage src={equipment.image} alt = 'equipment'/>
-          <StyledSpecs>
-            <ul>
-              <Category>Category:</Category><Details> {equipment.category ? `${equipment.category}` : 'N/A'}</Details>
-              <Category>Subcategory:</Category><Details> {equipment.subcategory ? `${equipment.subcategory}` : 'N/A'}</Details>
-              <Category>Caliber:</Category><Details> {equipment.caliber ? `${equipment.caliber}` : 'N/A'}</Details>
-              <Category>Max range meters:</Category><Details> {equipment.maxrangemeters ? `${equipment.maxrangemeters}` : 'N/A'}</Details>
-              <Category>Armored:</Category><Details> {equipment.armored ? 'True' : 'False'}</Details>
-              <Category>Country:</Category><Details> {equipment.country ? `${equipment.country}` : 'N/A'}</Details>
-            </ul>
-          </StyledSpecs>
-        </Background>  
-      </>
-
-    );
 }
 
 export default DetailPage;

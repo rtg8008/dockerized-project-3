@@ -78,6 +78,7 @@ app.get('/equipment/:id', (req, res) => {
         'equipment.armored as armored',
         'equipment.country as country',
         'equipment.image as image',
+        'equipment.page_number as page_number'
         )
   .then(data => {
     if (data.length === 0)
