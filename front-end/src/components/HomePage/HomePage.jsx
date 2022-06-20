@@ -1,13 +1,12 @@
 import React, { useState, useEffect }from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Background, Insert, Create, Search, Mission } from './StyledHomePage';
-
-
+import { Background, Insert, Create, Search, Mission, Header } from './StyledHomePage';
 
 const HomePage = () => {
   const nav = useNavigate();
   const [results, setResults] = useState([]);
   const [searchInput, setSearchInput] = useState('')
+
 
   useEffect(() => {
     fetch('http://localhost:8080/mission/')
@@ -51,6 +50,7 @@ const HomePage = () => {
   
       return (
       <>
+        <Header><h1>WEGMANS MISSION PLANNER</h1></Header>
         <Background>
           <Insert id="statement" placeholder="Insert Mission Statement"/>  
           <Insert type ="text" id="lat" placeholder="Insert Latitude of mission"/> 

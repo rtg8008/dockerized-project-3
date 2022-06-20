@@ -8,16 +8,17 @@ export const AddEquipment = styled.img`
   width: 50px;
   height: auto;
   border-radius: 50%;
-  box-shadow: 0 0 8px 0 #889baf;
+  box-shadow: 0 0 8px 0 #222;
   padding: 8px 8px;
   z-index: 3000;
   cursor: pointer;
-  background-color: Cornsilk;
+  background-color: rgba(255,255,255, 0.1);
+  backdrop-filter: blur(8px);
   transition: all 0.4s;
 
   &:hover {
-    box-shadow: 0 0 28px 0 #889baf;
-    background-color: DarkSeaGreen;
+    box-shadow: 0 0 28px 0 #222;
+    background-color: DarkSlateGray;
     transform: scale(1.1);
   }
 `
@@ -29,16 +30,17 @@ export const Delete = styled.img`
   width: 50px;
   height: auto;
   border-radius: 50%;
-  box-shadow: 0 0 8px 0 #889baf;
+  box-shadow: 0 0 8px 0 #222;
   padding: 8px 8px;
   z-index: 3000;
   cursor: pointer;
-  background-color: Cornsilk;
+  background-color: rgba(255,255,255, 0.1);
+  backdrop-filter: blur(8px);
   transition: all 0.4s;
 
   &:hover {
-    box-shadow: 0 0 28px 0 #889baf;
-    background-color: IndianRed;
+    box-shadow: 0 0 28px 0 #222;
+    background-color: Maroon;
     transform: scale(1.1);
   }
 `
@@ -46,12 +48,13 @@ export const Delete = styled.img`
 // Background --------------------------------------------------
 export const Background= styled.div`
   border-radius: 20px;
-  box-shadow: 0 0 8px 0 #889baf;
+  box-shadow: 0 0 8px 0 #222;
   padding: 16px;
   margin: 10px;
   margin-bottom: 25px;
   z-index: 1000;
-  background-color: AliceBlue;
+  background-color: rgba(255,255,255, 0.1);
+  backdrop-filter: blur(8px);
   transition: all 0.4s;
   text-align: center;
 `
@@ -59,17 +62,17 @@ export const Background= styled.div`
 // Equipment Details --------------------------------------------
 export const Image = styled.img`
   border-radius: 50%;
-  box-shadow: 0 0 8px 0 #889baf;
+  box-shadow: 0 0 8px 0 #222;
   margin-top: 10px;
   padding: 4px 4px;
   z-index: 3000;
   cursor: pointer;
-  background-color: CadetBlue;
+  background-color: DarkSlateGray;
   transition: all 0.4s;
 
   &:hover {
-    box-shadow: 0 0 28px 0 #889baf;
-    background-color: Cornsilk;
+    box-shadow: 0 0 16px 0 #222;
+    background-color: #222;
     transform: scale(1.1);
   }
 `
@@ -77,7 +80,7 @@ export const Image = styled.img`
 export const Category = styled.div`
   display: inline-block;
   border-radius: 20px;
-  box-shadow: 0 0 8px 0 #889baf;
+  box-shadow: 0 0 8px 0 #222;
   width: 40%;
   padding: 16px;
   margin: 10px;
@@ -93,7 +96,7 @@ export const Category = styled.div`
 export const Details = styled.div`
   display: inline-block;
   border-radius: 20px;
-  box-shadow: 0 0 8px 0 #889baf;
+  box-shadow: 0 0 8px 0 #222;
   width: 40%;
   padding: 16px;
   margin: 10px;

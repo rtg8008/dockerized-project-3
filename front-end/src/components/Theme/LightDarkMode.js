@@ -10,13 +10,13 @@ function LightDarkMode () {
     <>
       <ThemeContext.Consumer> 
         {({ changeTheme }) => (
-          <label class="switch">
+          <label className="switch">
             <input type="checkbox" color="link" onClick={() => {
                 setDarkMode(!darkMode);
                 changeTheme(darkMode ? themes.dark : themes.light);
               }}
               />
-            <span class="slider round"></span>
+            <div className="slider round"></div>
           </label>
      
         )}

@@ -1,25 +1,96 @@
 import styled from 'styled-components';
 
+// Header Logo ------------------------------------------------
+export const Header = styled.div`
+  border-radius: 20px;
+  box-shadow: 0 0 8px 0 #222;
+  padding: 16px;
+  z-index: 1000;
+  margin-top: 1%;
+  margin-left: 25%;
+  margin-right: 25%;
+  background-color: rgba(255,255,255, 0.4);
+  backdrop-filter: blur(8px);
+  transition: all 0.4s;
+  text-align: center;
+  color: DarkSlateGray;
+  font-family:'Lantinghei SC';
+  font-size: 16px;
+
+  -webkit-animation: breathing 1s ease-out infinite normal;
+  animation: breathing 10s ease-out infinite normal;
+  -webkit-font-smoothing: antialiased;  
+
+  @-webkit-keyframes breathing {
+    0% {
+      -webkit-transform: scale(0.9);
+      transform: scale(0.9);
+    }
+
+    25% {
+      -webkit-transform: scale(1);
+      transform: scale(1);
+    }
+
+    60% {
+      -webkit-transform: scale(0.9);
+      transform: scale(0.9);
+    }
+
+    100% {
+      -webkit-transform: scale(0.9);
+      transform: scale(0.9);
+    }
+  }
+  
+
+  @keyframes breathing {
+    0% {
+      -webkit-transform: scale(0.9);
+      -ms-transform: scale(0.9);
+      transform: scale(0.9);
+    }
+
+    25% {
+      -webkit-transform: scale(1);
+      -ms-transform: scale(1);
+      transform: scale(1);
+    }
+
+    60% {
+      -webkit-transform: scale(0.9);
+      -ms-transform: scale(0.9);
+      transform: scale(0.9);
+    }
+
+    100% {
+      -webkit-transform: scale(0.9);
+      -ms-transform: scale(0.9);
+      transform: scale(0.9);
+    }
+  }
+`
+
 
 // Background --------------------------------------------------
 export const Background = styled.div`
   border-radius: 20px;
-  box-shadow: 0 0 8px 0 #889baf;
+  box-shadow: 0 0 8px 0 #222;
   padding: 16px;
   margin: 10px;
-  margin-bottom: 25px;
+  margin-top: 20%;
   z-index: 1000;
-  background-color: AliceBlue;
+  // background-color: rgba(255,255,255, 0.1);
+  backdrop-filter: blur(8px);
   transition: all 0.4s;
   text-align: center;
 `
 // Create Mission ------------------------------------------------
 export const Insert = styled.input`
   text-align: center;
-  width: 15em;
   border-radius: 20px;
   border: 0px;
-  box-shadow: 0 0 8px 0 #889baf;
+  box-shadow: 0 0 8px 0 #222;
   padding: 8px;
   margin-right: 16px;
   margin-left: 16px;
@@ -27,24 +98,24 @@ export const Insert = styled.input`
   cursor: pointer;
   background-color: Cornsilk;
   transition: all 0.4s;
+  color: DarkSlateGray;
 `
 export const Create = styled.button`
   border-radius: 20px;
-  box-shadow: 0 0 8px 0 #889baf;
+  box-shadow: 0 0 8px 0 #222;
   border: 0;
-  width: 28em;
   padding: 16px;
   margin: 10px;
   margin-bottom: 0px;
   z-index: 3000;
   cursor: pointer;
   color: Cornsilk;
-  background-color: CadetBlue;
+  background-color: DarkSlateGray;
   transition: all 0.4s;
   text-align: center;
 
   &:hover {
-    color: CadetBlue;
+    color: DarkSlateGray;
     background-color: Cornsilk;
   }
 `
@@ -52,33 +123,33 @@ export const Create = styled.button`
 // Search Mission ------------------------------------------------
 export const Search = styled.input`
   text-align: center;
-  width: 25em;
   border-radius: 20px;
   border: 0px;
-  box-shadow: 0 0 8px 0 #889baf;
+  box-shadow: 0 0 8px 0 #222;
   padding: 16px;
   z-index: 3000;
   cursor: pointer;
   background-color: Cornsilk;
   transition: all 0.4s;
+  color: DarkSlateGray;
 `
 
 export const Mission = styled.div`
   border-radius: 20px;
-  box-shadow: 0 0 8px 0 #889baf;
+  box-shadow: 0 0 8px 0 #222;
   padding: 16px;
   margin: 10px;
   margin-bottom: 0px;
   z-index: 3000;
   cursor: pointer;
-  background-color: CadetBlue;
+  background-color: DarkSlateGray;
   color: Cornsilk;
   transition: all 0.4s;
   text-align: left;
   
   &:hover {
-    box-shadow: 0 0 28px 0 #889baf;
-    color: CadetBlue;
+    box-shadow: 0 0 28px 0 #222;
+    color: DarkSlateGray;
     background-color: Cornsilk;
     transform: scale(1.1);
   }

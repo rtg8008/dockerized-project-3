@@ -36,9 +36,10 @@ function MissionOverView() {//app below
     <NavHome/>
     <Background>
       <h1>{results.statement}</h1>
-      <Details>Longitude: {results.location_long}</Details>
-      <Details>Latitude: {results.location_lat}</Details>
+      <Category>Longitude: {results.location_long}</Category>
+      <Category>Latitude: {results.location_lat}</Category>
     </Background>
+    
     {results.equipment.map(element => (
     <Background>
       <div key={element.equipment_id}>
@@ -59,20 +60,6 @@ function MissionOverView() {//app below
     <div><AddEquipment src='/images/addlogo.png' alt='AddEquipLogo' data-testid='nav-to-add-equipment-page' onClick={() => nav(`/add-weapons/${letParams.missionId}`)}></AddEquipment></div>
     </>
   )
-
-
-  // {//return below
-  //   return (
-  //     <>
-
-  //     </>
-  //   );
-  //   //return above}
-  //   {//Hoisted helper functions below
-    
-  //   //HelperFunctions Hoisted end
-  //   }
-  // }
 }
 
 export default MissionOverView;

@@ -1,11 +1,20 @@
 .white-content {
-  background: white;
+  /* background: white; */
+  background-image: url('../../../public/images/arms.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
 }
 
 .dark-content {
-  background: #282c34;
-  /* color: white; */
+  /* background: #282c34;  */
+  background-image: url('../../../public/images/arms.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
 }
+
+
 
 
 /* -------------------------------------- */
