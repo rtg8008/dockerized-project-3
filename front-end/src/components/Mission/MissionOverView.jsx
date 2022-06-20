@@ -12,9 +12,6 @@ function MissionOverView() {//app below
   const deleteSelf = () => {
     const init = {
       method: 'DELETE',
-      // headers: {
-      //   'Content-Type': 'application/json;charset=utf-8'
-      // },
     }
     fetch(missionURL, init)
     .then(res => res.json())

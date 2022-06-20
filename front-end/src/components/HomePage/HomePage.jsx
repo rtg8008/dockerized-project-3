@@ -1,6 +1,11 @@
 import React, { useState, useEffect }from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Background, Insert, Create, Search, Mission, Header } from './StyledHomePage';
+// import {useNavigate, Link} from 'react-router-dom';
+// import InputSubmit from "./inputSubmit/inputSubmit"
+// import { Mission, Background, Input, StyledBackground  } from './StyledHomePage';
+
+
 
 const HomePage = () => {
   const nav = useNavigate();

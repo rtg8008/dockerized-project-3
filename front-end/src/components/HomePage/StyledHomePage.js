@@ -129,7 +129,7 @@ export const Search = styled.input`
   padding: 16px;
   z-index: 3000;
   cursor: pointer;
-  background-color: Cornsilk;
+  background-color: #FFFEFE;
   transition: all 0.4s;
   color: DarkSlateGray;
 `
@@ -154,4 +154,16 @@ export const Mission = styled.div`
     transform: scale(1.1);
   }
 `
+export const StyledBackground = styled.div`
+  background-image: url("/mdo.jpeg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+  width: 100vw;
+  height: 97.3vh;
+`;
 
+export const StyledHeader = styled.h1`
+
+`
