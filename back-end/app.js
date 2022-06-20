@@ -180,7 +180,8 @@ app.get('/mission/:id', async (req, res) => {
         'meta.quantity as quantity',
         'meta.location_lat as lat',
         'meta.location_long as lon',
-        'meta.phase as phase'
+        'meta.phase as phase',
+        'mission_equipment.id as mission_equipment_id'
         )
   
   await knex
@@ -295,6 +296,21 @@ app.patch('/mission/:id', async (req, res) => {
   }
 
 })
+/* REQUEST BODY
+    {
+      "phase": 1,
+      "quantity": 1,
+      "location_lat" : 123,
+      "location_long": 123
+    }
+*/
+app.patch('/mission_equipment/:mission_equipment_id', async (req, res) => {
+  await knex('meta')
+  .where({id: req.params.mission_equipment_id})
+  .update(req.body)
+  res.status(200).send({message: `Updated metadata at ${req.params.mission_equipment_id}`})
+})
+
 // DELETE FUNCTIONS ------------------------------------------------------------------------------------------------------------------------//
 app.delete('/mission/:id', async (req, res) => {
   console.log('deleting mission at id: ', req.params.id);
@@ -326,7 +342,19 @@ app.delete('/mission/:id', async (req, res) => {
   
   res.status(200).send(result);
 })
+app.delete('/mission_equipment/:mission_equipment_id', async (req, res) => {
+  console.log('deleting mission_equipment at: ',req.params.mission_equipment_id)
 
+  await knex('mission_equipment')
+  .del()
+  .where({id: req.params.mission_equipment_id})
+
+  await knex('meta')
+  .del()
+  .where({id: req.params.mission_equipment_id})
+  res.status(200).send({message: 'this worked'});
+
+})
 module.exports = app;
 
 // .select('equipment.id as id',
