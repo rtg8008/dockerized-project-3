@@ -56,6 +56,10 @@ function MissionOverView() {//app below
     {
       return;
     }
+    if (quantity === '' && phase === '' && lat === '' && lon === '')
+    {
+      return;
+    }
     if(quantity !== '')
     {
       requestBody.quantity = parseInt(quantity);
