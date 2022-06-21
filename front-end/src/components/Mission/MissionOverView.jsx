@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import NavHome from "../ReusableComponents/NavHome.jsx";
-import { Details, AddEquipment, Delete, Background, Category, Image, DeleteEquipmentFromMission } from './StyleMissionOverview.js'
+import { Details, AddEquipment, Delete, Background, Category, Image, DeleteEquipmentFromMission, Header } from './StyleMissionOverview.js'
 import FormDialog from './EditMetaForm'
 import HawgExport from './HawgExport'
 // 
@@ -114,17 +114,18 @@ function MissionOverView() {//app below
     <>
    
     <NavHome/>
-    <Background>
-      <h1>{results.statement.toUpperCase()}</h1>
+
+    <Header><h1>{results.statement.toUpperCase()}</h1>
       <HawgExport/>
       <Category>Longitude: {results.location_long}</Category>
       <Category>Latitude: {results.location_lat}</Category>
-    </Background>
+    </Header>
+
     
     {results.equipment.map((element, index) => (
     <Background>
       <div key={element.equipment_id}>
-        <div><Image style={{height: '100px'}} src = {element.image} alt = {element.name} onClick={() => nav(`/equipment/${element.equipment_id}`)}/></div>
+        <div><Image src = {element.image} alt = {element.name} onClick={() => nav(`/equipment/${element.equipment_id}`)}/></div>
         <Category>Equipment:</Category><Details>{element.equipment_name}</Details>
         {/* <Category>Category:</Category><Details>{element.category}</Details>
         <Category>Subcategory:</Category><Details>{element.subcategory}</Details> */}

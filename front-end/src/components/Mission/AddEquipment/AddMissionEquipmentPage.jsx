@@ -1,11 +1,12 @@
 import  React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import NavHome from '../../ReusableComponents/NavHome.jsx';
-import { AddMission, Background, BackMission, Details, Image } from './StyleAddMissionEquipment.js'
+import { AddMission, Background, BackMission, Category, Details, Image } from './StyleAddMissionEquipment.js'
 // import { Details } from './StyleAddEquipment.js'
 import {FormControl, MenuItem, InputLabel, Button} from '@mui/material'
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { ReturnToMissionOverview, StyledButton } from './StyleAddEquipment.js';
+import { Header } from '../StyleMissionOverview.js';
 //imports end
 
 function AddMissionEquipmentPage() {//app below
@@ -138,28 +139,16 @@ function AddMissionEquipmentPage() {//app below
     return (
     <>
       <NavHome/>
-      <Background>
-      <h1>Add any equipment to the mission below:</h1>
-      <BackMission onClick={()=>{nav(`/mission/${letParams.missionId}`)}}>Go back to mission</BackMission>
-      </Background>  
+      <Header>
+        <h1>ADD EQUIPMENT TO MISSION:</h1>
+        <BackMission onClick={()=>{nav(`/mission/${letParams.missionId}`)}}>Go back to mission</BackMission>
+      </Header>  
 
-      <Background>
-        {/* {equipmentData.map((element, index)=>{
-          return (
-            <Details key={element.id}>
-              <Image src = {element.image} alt = {element.name} height="100px"/>
-              <h2>{element.name}</h2>
-              <AddMission onClick={() => {
-                addToMission(element.id)
-              }}>Add me to mission {letParams.missionId}</AddMission>
-            </Details>
-          )
-        })} */}
-      
+      {/* <Background>      */}
   
       <div>
-     
-        <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+      <Category>  
+        <FormControl sx={{ m: 1, minWidth: 240 }} size="small">
           <InputLabel id="categorySelect-label">Category</InputLabel>
           <Select
             labelId="categorySelect-label"
@@ -180,7 +169,7 @@ function AddMissionEquipmentPage() {//app below
             })}
           </Select>
         </FormControl>
-        <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+        <FormControl sx={{ m: 1, minWidth: 240 }} size="small">
           <InputLabel id="subcategorySelect-label">Subcategory</InputLabel>
           <Select
             labelId="subcategorySelect-label"
@@ -202,11 +191,13 @@ function AddMissionEquipmentPage() {//app below
             })}
           </Select>
         </FormControl>
+        </Category>  
+        <Background>  
         {
         equipmentData.map((element, index)=>{
           return (
             <Details key={element.id}>
-              <img src = {element.image} alt = {element.name} height="100px" onClick={()=>{nav(`/equipment/${element.id}`)}}></img>
+              <Image src = {element.image} alt = {element.name} height="100px" onClick={()=>{nav(`/equipment/${element.id}`)}}/>
               <div>{element.name}</div>
                 <AddMission src='/images/addlogo.png' alt='AddEquipmentLogo' title='Add Equipment to Mission' onClick={() => {
                   addToMission(element.id)
@@ -215,8 +206,8 @@ function AddMissionEquipmentPage() {//app below
           )
         })
         }
-      </div>
       </Background>
+      </div>
     </>
     );
   } 

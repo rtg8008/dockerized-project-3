@@ -53,25 +53,40 @@ export const Background= styled.div`
   margin: 10px;
   margin-bottom: 25px;
   z-index: 1000;
-  background-color: rgba(255,255,255, 0.1);
+  background-color: rgba(255,255,255, 0.25);
+  backdrop-filter: blur(8px);
+  transition: all 0.4s;
+  text-align: center;
+`
+// Header --------------------------------------------------
+export const Header= styled.div`
+  border-radius: 20px;
+  box-shadow: 0 0 8px 0 #222;
+  padding: 16px;
+  margin: 10px;
+  margin-bottom: 25px;
+  z-index: 1000;
+  background-color: rgba(255,248,220, 0.9);
   backdrop-filter: blur(8px);
   transition: all 0.4s;
   text-align: center;
 `
 
+
 // Equipment Details --------------------------------------------
 export const Image = styled.img`
-  border-radius: 50%;
-  box-shadow: 0 0 8px 0 #222;
+  border-radius: 10px;
+  width: 500px;
+  height: auto;
   margin-top: 10px;
+  padding: 4px 4px;
   z-index: 3000;
   cursor: pointer;
-  border: 1px solid #222;
   transition: all 0.4s;
 
   &:hover {
-    box-shadow: 0 0 16px 0 #222;
-    background-color: #222;
+    box-shadow: 0 0 16px 0 Cornsilk;
+    background-color: Cornsilk;
     transform: scale(1.1);
   }
 `
@@ -81,6 +96,7 @@ export const Category = styled.div`
   border-radius: 20px;
   box-shadow: 0 0 8px 0 #222;
   width: 40%;
+  height: auto;
   padding: 16px;
   margin: 10px;
   margin-bottom: 0px;
@@ -97,6 +113,7 @@ export const Details = styled.div`
   border-radius: 20px;
   box-shadow: 0 0 8px 0 #222;
   width: 40%;
+  height: auto;
   padding: 16px;
   margin: 10px;
   margin-bottom: 0px;

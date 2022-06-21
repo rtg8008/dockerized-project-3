@@ -4,9 +4,10 @@ import AddEquipmentPage from '../addEquipment/addEquipmentPage';
 import { Background, Insert, Create, Search, Mission, Header } from './StyledHomePage';
 import {Button, FormControl, MenuItem, InputLabel, TextField} from '@mui/material'
 import SendIcon from '@mui/icons-material/Send';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+// import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import Box from '@mui/system/Box';
 import ArrowDropDown from '@mui/icons-material/ArrowDropDown';
+import ArrowDropUp from '@mui/icons-material/ArrowDropUp'; 
 import { styled } from '@mui/material/styles';
 
 const ColorButton = styled(Button)(({ theme }) => ({
@@ -74,60 +75,73 @@ const HomePage = () => {
       <>
         <Header><h1>WORLDWIDE EQUIPMENT GUIDE</h1></Header>
         <Background>
-        <ColorButton sx={{bgcolor: '#2F4F4F', color: '#FFF8DC', boxShadow: 5}} variant="contained" endIcon={<ArrowDropDown/>}
-            onClick={()=>setShowCreateEquipment(!showCreateEquipment)}>CREATE NEW EQUIPMENT</ColorButton>
           {showCreateEquipment?
-          <AddEquipmentPage/>
-          : null}
+          <>
+            <ColorButton sx={{bgcolor: '#2F4F4F', color: '#FFF8DC', boxShadow: 5}} variant="contained" endIcon={<ArrowDropUp/>}
+              onClick={()=>setShowCreateEquipment(!showCreateEquipment)}>CREATE NEW EQUIPMENT</ColorButton>
+            <AddEquipmentPage/>
+          </>
+          : 
+            <ColorButton sx={{bgcolor: '#2F4F4F', color: '#FFF8DC', boxShadow: 5}} variant="contained" endIcon={<ArrowDropDown/>}
+                onClick={()=>setShowCreateEquipment(!showCreateEquipment)}>CREATE NEW EQUIPMENT</ColorButton>
+          }
         </Background>
 
         <Background>
-        <ColorButton sx={{bgcolor: '#2F4F4F', color: '#FFF8DC', boxShadow: 5}} variant="contained" endIcon={<ArrowDropDown/>}
-            onClick={()=>setShowCreateMission(!showCreateMission)}>CREATE NEW MISSION</ColorButton>
           {showCreateMission?
-          <div>
-          <Box
-            component="form"
-            sx={{
-              '& > :not(style)': { m: 1, width: '25ch',
-              'margin-top': '2vh',
-              bgcolor: '#FFF8DC',
-              boxShadow: 5,
-            },
-            }}
-            noValidate
-            autoComplete="off"          
-          >
-            <TextField sx={{input: {color: 'DarkSlateGray', borderColor: 'White'}}} variant='outlined' label='Mission' id="statement" placeholder="Mission"/>  
-            <TextField variant='outlined' label='Latitude' id="lat" placeholder="Latitude"/> 
-            <TextField variant='outlined' label='Longitude' id="lon" placeholder="Longitude"/>
-          </Box>
-          <div> 
-            <ColorButton sx={{'margin-top': '2vh', bgcolor: '#2F4F4F', color: '#FFF8DC', boxShadow: 5}} variant="contained" endIcon={<SendIcon />}
-            onClick={()=>{
-              createMission(document.getElementById('statement').value,
-              document.getElementById('lat').value,
-              document.getElementById('lon').value)
-            }}>Submit</ColorButton>
-          </div>
-          </div>
-          : null}
+            <>
+              <ColorButton sx={{bgcolor: '#2F4F4F', color: '#FFF8DC', boxShadow: 5}} variant="contained" endIcon={<ArrowDropUp/>}
+                onClick={()=>setShowCreateMission(!showCreateMission)}>CREATE NEW MISSION</ColorButton>
+              <Box
+                component="form"
+                sx={{
+                  '& > :not(style)': { m: 1, width: '25ch',
+                  'margin-top': '2vh',
+                  bgcolor: '#FFF8DC',
+                  boxShadow: 5,
+                },
+                }}
+                noValidate
+                autoComplete="off"          
+              >
+                <TextField sx={{input: {color: 'DarkSlateGray', borderColor: 'White'}}} variant='outlined' label='Mission' id="statement" placeholder="Mission"/>  
+                <TextField variant='outlined' label='Latitude' id="lat" placeholder="Latitude"/> 
+                <TextField variant='outlined' label='Longitude' id="lon" placeholder="Longitude"/>
+              </Box>
+              <div> 
+                <ColorButton sx={{'margin-top': '2vh', bgcolor: '#2F4F4F', color: '#FFF8DC', boxShadow: 5}} variant="contained" endIcon={<SendIcon />}
+                onClick={()=>{
+                  createMission(document.getElementById('statement').value,
+                  document.getElementById('lat').value,
+                  document.getElementById('lon').value)
+                }}>Submit</ColorButton>
+              </div>
+            </>
+            : 
+            <ColorButton sx={{bgcolor: '#2F4F4F', color: '#FFF8DC', boxShadow: 5}} variant="contained" endIcon={<ArrowDropDown/>}
+            onClick={()=>setShowCreateMission(!showCreateMission)}>CREATE NEW MISSION</ColorButton>
+          }
          
         </Background>
 
         <Background>
-        <ColorButton sx={{bgcolor: '#2F4F4F', color: '#FFF8DC', boxShadow: 5}} variant="contained" endIcon={<ArrowDropDown/>}
-            onClick={()=>setShowSearchMission(!showSearchMission)}>SEARCH MISSIONS</ColorButton>
-            {showSearchMission?
-            <div>
-            <Search type="text" placeholder="Search" onKeyUp={(e) => searchHandler(e)} />
-            {filteredResults.map(element => (
-              <Mission key={element.id} onClick={() => nav(`mission/${element.id}`)} >
-                {element.statement}
-              </Mission>
-            ))}
-            </div>
-            : null}
+          {showSearchMission?
+            <>
+              <ColorButton sx={{bgcolor: '#2F4F4F', color: '#FFF8DC', boxShadow: 5}} variant="contained" endIcon={<ArrowDropUp/>}
+                onClick={()=>setShowSearchMission(!showSearchMission)}>SEARCH MISSIONS</ColorButton>
+              <div>
+                <Search type="text" placeholder="Search" onKeyUp={(e) => searchHandler(e)} />
+                {filteredResults.map(element => (
+                  <Mission key={element.id} onClick={() => nav(`mission/${element.id}`)} >
+                    {element.statement}
+                  </Mission>
+                ))}
+              </div>
+            </>
+          : 
+          <ColorButton sx={{bgcolor: '#2F4F4F', color: '#FFF8DC', boxShadow: 5}} variant="contained" endIcon={<ArrowDropDown/>}
+          onClick={()=>setShowSearchMission(!showSearchMission)}>SEARCH MISSIONS</ColorButton>
+          }
         </Background>
 
       </>

@@ -37,20 +37,42 @@ export const Background= styled.div`
   backdrop-filter: blur(8px);
   transition: all 0.4s;
   text-align: center;
-  
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  // display: grid;
-  // grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 `;
 
+// Header --------------------------------------------------
+export const Header= styled.div`
+  border-radius: 20px;
+  box-shadow: 0 0 8px 0 #222;
+  padding: 16px;
+  margin: 10px;
+  margin-bottom: 25px;
+  z-index: 1000;
+  background-color: rgba(255,248,220, 0.7);
+  backdrop-filter: blur(8px);
+  transition: all 0.4s;
+  text-align: center;
+`
+// Category --------------------------------------------------
+export const Category= styled.div`
+  border-radius: 20px;
+  box-shadow: 0 0 8px 0 #222;
+  padding: 16px;
+  margin: 10px;
+  margin-bottom: 25px;
+  z-index: 1000;
+  background-color: rgba(255,255,255, 0.5);
+  backdrop-filter: blur(8px);
+  transition: all 0.4s;
+  text-align: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+`;
 
 // Equipment Details --------------------------------------------
 export const Image = styled.img`
-  border-radius: 50%;
+  border-radius: 10px;
   width: 250px;
   height: auto;
   margin-top: 10px;
@@ -60,8 +82,8 @@ export const Image = styled.img`
   transition: all 0.4s;
 
   &:hover {
-    box-shadow: 0 0 28px 0 #222;
-    background-color: #222;
+    box-shadow: 0 0 28px 0 Cornsilk;
+    background-color: Cornsilk;
     transform: scale(1.1);
   }
 `
@@ -69,7 +91,6 @@ export const Image = styled.img`
 export const Details = styled.div`
   border-radius: 20px;
   box-shadow: 0 0 8px 0 #222;
-  padding: 16px;
   margin: 10px;
   margin-bottom: 0px;
   z-index: 2000;
@@ -89,6 +110,7 @@ export const AddMission = styled.img`
   background-color: rgba(255,255,255, 0.1);
   backdrop-filter: blur(8px);
   transition: all 0.4s;
+  margin-top: 15px;
 
   &:hover {
     box-shadow: 0 0 16px 0 #222;

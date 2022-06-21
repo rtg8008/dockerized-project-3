@@ -9,8 +9,8 @@ export const Header = styled.div`
   margin-top: 1%;
   margin-left: 25%;
   margin-right: 25%;
-  margin-bottom: 10%;
-  background-color: rgba(255,255,255, 0.4);
+  margin-bottom: 5%;
+  background-color: rgba(255,248,220, 0.7);
   backdrop-filter: blur(8px);
   transition: all 0.4s;
   text-align: center;
@@ -80,8 +80,8 @@ export const Background = styled.div`
   padding: 16px;
   margin: 10px;
   margin-top: 5%;
-  margin-left: 10%;
-  margin-right: 10%;
+  margin-left: 15%;
+  margin-right: 15%;
   z-index: 1000;
   // background-color: rgba(255,255,255, 0.1);
   backdrop-filter: blur(8px);

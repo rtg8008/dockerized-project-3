@@ -2,15 +2,15 @@
   /* background: white; */
   background-image: url('../../../public/images/arms.jpg');
   background-repeat: no-repeat;
-  /* background-attachment: fixed; */
+  background-attachment: fixed;
   background-size: cover;
 }
 
 .dark-content {
   /* background: #282c34;  */
-  background-image: url('../../../public/images/arms.jpg');
+  background-image: url('../../../public/images/tank.jpg');
   background-repeat: no-repeat;
-  /* background-attachment: fixed; */
+  background-attachment: fixed;
   background-size: cover;
 }
 
@@ -47,7 +47,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #ccc;
+  background-color: #836904;
   -webkit-transition: .4s;
   transition: .4s;
 }
@@ -59,7 +59,7 @@
   width: 26px;
   left: 4px;
   bottom: 4px;
-  background-color: white;
+  background-color: #FFF8DC;
   -webkit-transition: .4s;
   transition: .4s;
 }
@@ -72,7 +72,7 @@ input:checked + .slider:before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
   transform: translateX(26px);
-  background-color: #ccc;
+  background-color: #FFF8DC;
 }
 
 /* Rounded sliders */

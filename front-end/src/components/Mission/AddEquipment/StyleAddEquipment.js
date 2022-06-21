@@ -10,13 +10,6 @@ cursor: pointer;
 background-color: DarkSlateGray;
 color: Cornsilk;
 transition: all 0.4s;
-
-// &:hover {
-//   box-shadow: 0 0 16px 0 #222;
-//   color: DarkSlateGray;
-//   background-color: Cornsilk;
-//   transform: scale(1.1);
-// }
 `
 
 export const ReturnToMissionOverview = styled.img`
