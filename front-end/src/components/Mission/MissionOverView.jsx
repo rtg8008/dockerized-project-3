@@ -116,7 +116,7 @@ function MissionOverView() {//app below
     <NavHome/>
 
     <Header><h1>{results.statement.toUpperCase()}</h1>
-      <HawgExport/>
+      <HawgExport missionId={results.id} results={results.equipment}/>
       <Category>Longitude: {results.location_long}</Category>
       <Category>Latitude: {results.location_lat}</Category>
     </Header>

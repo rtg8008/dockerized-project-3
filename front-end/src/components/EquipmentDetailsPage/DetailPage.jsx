@@ -36,8 +36,10 @@ function DetailPage() {
                 <Category>Country:</Category><Details> {equipment.country ? `${equipment.country}` : 'N/A'}</Details>
               </ul>
             </StyledSpecs>
-          </Background>  
-          <iframe src={`https://upload.wikimedia.org/wikipedia/commons/1/1f/WorldwideEquipmentGuide_2015_Ground_Systems.pdf#page=${equipment.page_number}`}  width="90%" height="1000px" style={{marginRight: '5%', marginLeft: '5%'}}></iframe>
+          </Background> 
+          <Background> 
+            <iframe title='WEG PDF' src={`https://upload.wikimedia.org/wikipedia/commons/1/1f/WorldwideEquipmentGuide_2015_Ground_Systems.pdf#page=${equipment.page_number}`}  width="90%" height="1000px" style={{marginRight: '5%', marginLeft: '5%'}}></iframe>
+          </Background>
         </>
   
       );
